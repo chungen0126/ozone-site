@@ -475,8 +475,8 @@ s=d.getElementsByTagName('script')[0];
 
 <img src="diskBalancer.png" alt='Disk Even'  class="img-responsive" /></p>
 <h2 id="功能标志">功能标志</h2>
-<p>磁盘平衡器功能已通过功能标志引入。默认情况下，此功能处于禁用状态。</p>
-<p>可以通过在“ozone-site.xml”配置文件中将以下属性设置为“true”来<strong>启用</strong>该功能：
+<p>磁盘平衡器功能已通过功能标志引入。默认情况下，此功能处于启用状态。</p>
+<p>可以通过在“ozone-site.xml”配置文件中将以下属性设置为“false”来<strong>禁用</strong>该功能：
 <code>hdds.datanode.disk.balancer.enabled = false</code></p>
 <h3 id="身份验证和授权">身份验证和授权</h3>
 <p>DiskBalancer 命令通过 RPC 直接与数据节点通信，因此需要进行正确的身份验证和授权配置。</p>
@@ -528,8 +528,8 @@ s=d.getElementsByTagName('script')[0];
 请重启数据节点服务以使更改生效。</p>
 <h2 id="命令行用法">命令行用法</h2>
 <p>DiskBalancer 通过 <code>ozone admin datanode diskbalancer</code> 命令进行管理。</p>
-<p>**注意：**此命令在主帮助信息（<code>ozone admin datanode --help</code>）中隐藏。这是因为该功能目前处于实验阶段，默认禁用。隐藏该命令可防止意外使用，
-并为普通用户提供清晰的帮助输出。但是，对于希望启用和使用该功能的用户，该命令仍然完全可用。</p>
+<p>**注意：**DiskBalancer 在数据节点上默认启用。在 <code>ozone-site.xml</code> 中使用 <code>hdds.datanode.disk.balancer.enabled=false</code>
+可禁用数据节点上的服务并阻止 CLI 命令运行。</p>
 <h3 id="命令语法">命令语法</h3>
 <p><strong>启动 DiskBalancer：</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer start <span style="color:#f92672">[</span>&lt;datanode-address&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span>
@@ -658,8 +658,8 @@ s=d.getElementsByTagName('script')[0];
   <tbody>
       <tr>
           <td><code>hdds.datanode.disk.balancer.enabled</code></td>
-          <td><code>false</code></td>
-          <td>如果为 false，则 Datanode 上的 DiskBalancer 服务将被禁用。将其配置为 true 可启用 DiskBalancer。</td>
+          <td><code>true</code></td>
+          <td>如果为 false，则 Datanode 上的 DiskBalancer 服务将被禁用。默认情况下，DiskBalancer 在 Datanode 上启用。</td>
       </tr>
       <tr>
           <td><code>hdds.datanode.disk.balancer.volume.density.threshold.percent</code></td>
@@ -732,7 +732,7 @@ s=d.getElementsByTagName('script')[0];
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.2.0-SNAPSHOT, Last Modified: April 27, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/bf4515f16ca705b236ceeffd0b8e6643570e0889">bf4515f16c</a>
+      Version: 2.2.0-SNAPSHOT, Last Modified: June 2, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/547ac88e42c19d0efae943e9d6b3f192712e4785">547ac88e42</a>
     </span>
   </div>
 </footer>

@@ -761,7 +761,7 @@ that is movable (per <code>hdds.datanode.disk.balancer.container.states</code>, 
 </ul>
 <p>This ensures DiskBalancer respects datanode lifecycle management and does not interfere with maintenance or decommissioning operations.</p>
 <h2 id="feature-flag">Feature Flag</h2>
-<p>The DiskBalancer feature is gated behind a feature flag (<code>hdds.datanode.disk.balancer.enabled</code>) to allow controlled rollout. By default, the feature is disabled. When disabled, the DiskBalancer service is not initialized on datanodes, and the CLI commands are hidden from the main help output to prevent accidental usage.</p>
+<p>The DiskBalancer feature is gated behind a feature flag (<code>hdds.datanode.disk.balancer.enabled</code>) to allow controlled rollout. By default, the feature is enabled. When disabled, the DiskBalancer service is not initialized on datanodes, and the CLI commands refuse to run until the flag is set back to true.</p>
 <h2 id="diskbalancer-metrics">DiskBalancer Metrics</h2>
 <p>The DiskBalancer service exposes JMX metrics on each Datanode for real-time monitoring. These metrics provide insights
 into the balancer&rsquo;s activity, progress, and overall health.</p>
@@ -819,7 +819,7 @@ into the balancer&rsquo;s activity, progress, and overall health.</p>
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.2.0-SNAPSHOT, Last Modified: April 27, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/bf4515f16ca705b236ceeffd0b8e6643570e0889">bf4515f16c</a>
+      Version: 2.2.0-SNAPSHOT, Last Modified: June 2, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/547ac88e42c19d0efae943e9d6b3f192712e4785">547ac88e42</a>
     </span>
   </div>
 </footer>

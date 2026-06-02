@@ -662,8 +662,8 @@ ensure even data distribution across disks within a Datanode.</p>
 
 <img src="diskBalancer.png" alt='Data spread across disks'  class="img-responsive" /></p>
 <h2 id="feature-flag">Feature Flag</h2>
-<p>The Disk Balancer feature is introduced with a feature flag. By default, this feature is disabled.</p>
-<p>The feature can be <strong>enabled</strong> by setting the following property to <code>true</code> in the <code>ozone-site.xml</code> configuration file:
+<p>The Disk Balancer feature is introduced with a feature flag. By default, this feature is enabled.</p>
+<p>The feature can be <strong>disabled</strong> by setting the following property to <code>false</code> in the <code>ozone-site.xml</code> configuration file:
 <code>hdds.datanode.disk.balancer.enabled = false</code></p>
 <h3 id="authentication-and-authorization">Authentication and Authorization</h3>
 <p>DiskBalancer commands communicate directly with datanodes via RPC, requiring proper authentication and authorization configuration.</p>
@@ -713,8 +713,8 @@ group names from your environment. After updating the <code>ozone.administrators
 restart the datanode service for the changes to take effect.</p>
 <h2 id="command-line-usage">Command Line Usage</h2>
 <p>The DiskBalancer is managed through the <code>ozone admin datanode diskbalancer</code> command.</p>
-<p><strong>Note:</strong> This command is hidden from the main help message (<code>ozone admin datanode --help</code>). This is because the feature
-is currently considered experimental and is disabled by default. The command is, however, fully functional for those who wish to enable and use the feature.</p>
+<p><strong>Note:</strong> DiskBalancer is enabled by default on datanodes. Use <code>hdds.datanode.disk.balancer.enabled=false</code> in
+<code>ozone-site.xml</code> to disable the service on datanodes and prevent CLI commands from running.</p>
 <h3 id="command-syntax">Command Syntax</h3>
 <p><strong>Start DiskBalancer:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer start <span style="color:#f92672">[</span>&lt;datanode-address&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span>
@@ -848,8 +848,8 @@ is currently considered experimental and is disabled by default. The command is,
   <tbody>
       <tr>
           <td><code>hdds.datanode.disk.balancer.enabled</code></td>
-          <td><code>false</code></td>
-          <td>If false, the DiskBalancer service on the Datanode is disabled. Configure it to true for diskBalancer to be enabled.</td>
+          <td><code>true</code></td>
+          <td>If false, the DiskBalancer service on the Datanode is disabled. By default, DiskBalancer is enabled on datanodes.</td>
       </tr>
       <tr>
           <td><code>hdds.datanode.disk.balancer.volume.density.threshold.percent</code></td>
@@ -922,7 +922,7 @@ is currently considered experimental and is disabled by default. The command is,
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.2.0-SNAPSHOT, Last Modified: April 27, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/bf4515f16ca705b236ceeffd0b8e6643570e0889">bf4515f16c</a>
+      Version: 2.2.0-SNAPSHOT, Last Modified: June 2, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/547ac88e42c19d0efae943e9d6b3f192712e4785">547ac88e42</a>
     </span>
   </div>
 </footer>
