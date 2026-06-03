@@ -478,9 +478,9 @@ s=d.getElementsByTagName('script')[0];
 ./test.sh
 </code></pre><h2 id="blockade">Blockade</h2>
 <p><a href="https://github.com/worstcase/blockade">Blockade</a> 是一个测试网络故障和分片的工具（灵感来自于大名鼎鼎的<a href="https://jepsen.io/analyses">Jepsen 测试</a>）。</p>
-<p>Blockade 测试在其它测试的基础上实现，可以在分发包中的 <code>./blockade</code> 目录下进行测试。</p>
-<pre tabindex="0"><code>cd blockade
-pip install pytest==2.8.7,blockade
+<p>Blockade 测试以 Python 脚本形式包含在 <code>tests/blockade</code> 目录中。构建或解压发行包后，进入该目录并运行下面的命令：</p>
+<pre tabindex="0"><code>cd tests/blockade
+pip install pytest==2.8.7 blockade
 python -m pytest -s .
 </code></pre><p>更多细节查看 blockade 目录下的 README。</p>
 <h2 id="minichaosozonecluster">MiniChaosOzoneCluster</h2>
@@ -492,7 +492,7 @@ python -m pytest -s .
 <p>在randomkeys模式下，写入Ozone的数据是随机生成的。每个键的大小为10 KB。</p>
 <p>volume/bucket/key的数量是可以配置的。副本type和factor(例如: 3个节点使用ratis控制副本)也可以配置。</p>
 <p>更多信息，可使用如下命令查看:</p>
-<p>bin/ozone freon &ndash;help</p>
+<p>ozone freon &ndash;help</p>
 <p>例如：</p>
 <pre tabindex="0"><code>ozone freon randomkeys --num-of-volumes=10 --num-of-buckets 10 --num-of-keys 10  --replication-type=RATIS --factor=THREE
 </code></pre><pre tabindex="0"><code>***************************************************
@@ -527,7 +527,7 @@ Total Execution time: 00:00:16,898
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.2.0-SNAPSHOT, Last Modified: April 11, 2022 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/2522127b1c0bc12038265faeb667c9c0592e53bc">2522127b1c</a>
+      Version: 2.2.0-SNAPSHOT, Last Modified: June 3, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/c4c7c6f2575a4570a0d9f4a27782e3de944f94e1">c4c7c6f257</a>
     </span>
   </div>
 </footer>
