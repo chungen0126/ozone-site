@@ -723,31 +723,36 @@ Example: prevKey=/vol1/bucket1/key1</p>
 </li>
 </ul>
 <p><strong>Returns</strong></p>
-<p>Returns all the KeyMetadata objects for the given ContainerID.</p>
+<p>Returns all the KeyMetadata objects for the given ContainerID. <code>lastKey</code> is the final key seen in
+this page: pass it back as <code>prevKey</code> to continue paginating.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;totalCount&#34;</span>:<span style="color:#ae81ff">7</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;totalCount&#34;</span>: <span style="color:#ae81ff">7</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;lastKey&#34;</span>: <span style="color:#e6db74">&#34;/vol-1-73141/bucket-3-35816/key-0-43637&#34;</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;keys&#34;</span>: [
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Volume&#34;</span>:<span style="color:#e6db74">&#34;vol-1-73141&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Bucket&#34;</span>:<span style="color:#e6db74">&#34;bucket-3-35816&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Key&#34;</span>:<span style="color:#e6db74">&#34;key-0-43637&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;DataSize&#34;</span>:<span style="color:#ae81ff">1000</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Versions&#34;</span>:[<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Volume&#34;</span>: <span style="color:#e6db74">&#34;vol-1-73141&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Bucket&#34;</span>: <span style="color:#e6db74">&#34;bucket-3-35816&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;key-0-43637&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;CompletePath&#34;</span>: <span style="color:#e6db74">&#34;/vol-1-73141/bucket-3-35816/dir1/dir2/key-0-43637&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;DataSize&#34;</span>: <span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Versions&#34;</span>: [<span style="color:#ae81ff">0</span>],
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Blocks&#34;</span>: {
 </span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;0&#34;</span>: [
 </span></span><span style="display:flex;"><span>              {
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;containerID&#34;</span>:<span style="color:#ae81ff">1</span>,
-</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;localID&#34;</span>:<span style="color:#ae81ff">105232659753992201</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;containerID&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;localID&#34;</span>: <span style="color:#ae81ff">105232659753992201</span>
 </span></span><span style="display:flex;"><span>              }
 </span></span><span style="display:flex;"><span>            ]
 </span></span><span style="display:flex;"><span>          },
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;CreationTime&#34;</span>:<span style="color:#e6db74">&#34;2020-11-18T18:09:17.722Z&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;ModificationTime&#34;</span>:<span style="color:#e6db74">&#34;2020-11-18T18:09:30.405Z&#34;</span>
-</span></span><span style="display:flex;"><span>        },
-</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;CreationTime&#34;</span>: <span style="color:#e6db74">&#34;2020-11-18T18:09:17.722Z&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;ModificationTime&#34;</span>: <span style="color:#e6db74">&#34;2020-11-18T18:09:30.405Z&#34;</span>
+</span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      ]
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><h3 id="get-apiv1containersmissing">GET /api/v1/containers/missing</h3>
+<blockquote>
+<p><strong>Deprecated.</strong> Use <code>/api/v1/containers/unhealthy/MISSING</code> instead.</p>
+</blockquote>
 <p><strong>Parameters</strong></p>
 <ul>
 <li>
@@ -776,7 +781,54 @@ Example: prevKey=/vol1/bucket1/key1</p>
 </span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">...</span>
 </span></span><span style="display:flex;"><span>        ]
 </span></span><span style="display:flex;"><span>    }
-</span></span></code></pre></div><h3 id="get-apiv1containersidreplicahistory">GET /api/v1/containers/:id/replicaHistory</h3>
+</span></span></code></pre></div><h3 id="get-apiv1containersquasiclosed">GET /api/v1/containers/quasiClosed</h3>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p>limit (optional)</p>
+<p>Maximum number of containers to return. Default is 1000.</p>
+</li>
+<li>
+<p>minContainerId (optional)</p>
+<p>Cursor. Returns containers with ID greater than this value, in ascending order. Pass the
+previous response&rsquo;s <code>lastKey</code> to fetch the next page. Default is 0.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Returns containers currently in the <code>QUASI_CLOSED</code> lifecycle state. <code>quasiClosedCount</code> is the
+cluster-wide total (not just the current page). When the page is empty, both <code>firstKey</code> and
+<code>lastKey</code> echo back the <code>minContainerId</code> cursor.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;quasiClosedCount&#34;</span>: <span style="color:#ae81ff">42</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;firstKey&#34;</span>: <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;lastKey&#34;</span>: <span style="color:#ae81ff">199</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;containers&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;containerID&#34;</span>: <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;pipelineID&#34;</span>: <span style="color:#e6db74">&#34;88646d32-a1aa-4e1a-a8d5-aa1e7dd3f5cc&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;keys&#34;</span>: <span style="color:#ae81ff">17</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;stateEnterTime&#34;</span>: <span style="color:#ae81ff">1718640123456</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;expectedReplicaCount&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;actualReplicaCount&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicas&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;containerID&#34;</span>: <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;datanodeUuid&#34;</span>: <span style="color:#e6db74">&#34;841be80f-0454-47df-b676&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;datanodeHost&#34;</span>: <span style="color:#e6db74">&#34;localhost-1&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;firstSeenTime&#34;</span>: <span style="color:#ae81ff">1605724047057</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;lastSeenTime&#34;</span>: <span style="color:#ae81ff">1605731201301</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;lastBcsId&#34;</span>: <span style="color:#ae81ff">123</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;QUASI_CLOSED&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Responses:</p>
+<ul>
+<li><code>400 Bad Request</code>: <code>limit</code> or <code>minContainerId</code> is negative.</li>
+</ul>
+<h3 id="get-apiv1containersidreplicahistory">GET /api/v1/containers/:id/replicaHistory</h3>
 <p><strong>Parameters</strong></p>
 <p>No parameters.</p>
 <p><strong>Returns</strong></p>
@@ -794,18 +846,22 @@ Example: prevKey=/vol1/bucket1/key1</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li>
-<p>batchNum (optional)</p>
-<p>The batch number (like &ldquo;page number&rdquo;) of results to return.
-Passing 1, will return records 1 to limit. 2 will return
-limit + 1 to 2 * limit, etc.</p>
-</li>
-<li>
 <p>limit (optional)</p>
 <p>Only returns the limited number of results. The default limit is 1000.</p>
 </li>
+<li>
+<p>maxContainerId (optional)</p>
+<p>Upper bound for container IDs (exclusive). When specified, returns containers with IDs less
+than this value in descending order. Use it for backward pagination.</p>
+</li>
+<li>
+<p>minContainerId (optional)</p>
+<p>Lower bound for container IDs (exclusive). When <code>maxContainerId</code> is not specified, returns
+containers with IDs greater than this value in ascending order. Use it for forward pagination.</p>
+</li>
 </ul>
 <p><strong>Returns</strong></p>
-<p>Returns the UnhealthyContainerMetadata objects for all the unhealthycontainers.</p>
+<p>Returns the UnhealthyContainerMetadata objects for all the unhealthy containers.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>     {
 </span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;missingCount&#34;</span>: <span style="color:#ae81ff">2</span>,
 </span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;underReplicatedCount&#34;</span>: <span style="color:#ae81ff">0</span>,
@@ -837,20 +893,77 @@ limit + 1 to 2 * limit, etc.</p>
 <p><strong>Parameters</strong></p>
 <ul>
 <li>
-<p>batchNum (optional)</p>
-<p>The batch number (like &ldquo;page number&rdquo;) of results to return.
-Passing 1, will return records 1 to limit. 2 will return
-limit + 1 to 2 * limit, etc.</p>
-</li>
-<li>
 <p>limit (optional)</p>
 <p>Only returns the limited number of results. The default limit is 1000.</p>
+</li>
+<li>
+<p>maxContainerId (optional)</p>
+<p>Upper bound for container IDs (exclusive). When specified, returns containers with IDs less
+than this value in descending order. Use it for backward pagination.</p>
+</li>
+<li>
+<p>minContainerId (optional)</p>
+<p>Lower bound for container IDs (exclusive). When <code>maxContainerId</code> is not specified, returns
+containers with IDs greater than this value in ascending order. Use it for forward pagination.</p>
 </li>
 </ul>
 <p><strong>Returns</strong></p>
 <p>Returns the UnhealthyContainerMetadata objects for the containers in the given state.
-Possible unhealthy container states are <code>MISSING</code>, <code>MIS_REPLICATED</code>,<code>UNDER_REPLICATED</code>, <code>OVER_REPLICATED</code>.
+Possible unhealthy container states are <code>MISSING</code>, <code>MIS_REPLICATED</code>, <code>UNDER_REPLICATED</code>, <code>OVER_REPLICATED</code>.
 The response structure is same as <code>/containers/unhealthy</code>.</p>
+<h3 id="get-apiv1containersunhealthyexport">GET /api/v1/containers/unhealthy/export</h3>
+<p><strong>Returns</strong></p>
+<p>Lists every unhealthy-container export job currently tracked by Recon, in any status.
+Items are <code>ExportJob</code> objects (see schema below).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;jobId&#34;</span>: <span style="color:#e6db74">&#34;4f7a8b9c-1234-5678-9abc-def012345678&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;MISSING&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;RUNNING&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;submittedAt&#34;</span>: <span style="color:#ae81ff">1718640123456</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;startedAt&#34;</span>: <span style="color:#ae81ff">1718640124000</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;completedAt&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalRecords&#34;</span>: <span style="color:#ae81ff">250</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;estimatedTotal&#34;</span>: <span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;fileName&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;errorMessage&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;progressPercent&#34;</span>: <span style="color:#ae81ff">25</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;queuePosition&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;downloadCount&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;downloadsRemaining&#34;</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><h3 id="post-apiv1containersunhealthyexport">POST /api/v1/containers/unhealthy/export</h3>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p>state (required)</p>
+<p>One of <code>MISSING</code>, <code>MIS_REPLICATED</code>, <code>UNDER_REPLICATED</code>, <code>OVER_REPLICATED</code>.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Submits a new CSV export job and returns the <code>ExportJob</code> with the assigned <code>jobId</code>.
+The job initially has <code>status: QUEUED</code>.</p>
+<ul>
+<li><code>400 Bad Request</code>: <code>state</code> is missing or not a valid unhealthy state.</li>
+<li><code>429 Too Many Requests</code>: the export queue is full; retry later. Body: <code>{ &quot;error&quot;: &quot;Too Many Requests&quot;, &quot;message&quot;: &quot;&lt;reason&gt;&quot; }</code>.</li>
+</ul>
+<h3 id="get-apiv1containersunhealthyexportjobid">GET /api/v1/containers/unhealthy/export/:jobId</h3>
+<p><strong>Returns</strong></p>
+<p>Returns the current <code>ExportJob</code> for the given <code>jobId</code>. <code>404 Not Found</code> if no job has that id.</p>
+<h3 id="get-apiv1containersunhealthyexportjobiddownload">GET /api/v1/containers/unhealthy/export/:jobId/download</h3>
+<p><strong>Returns</strong></p>
+<p>Streams the TAR archive produced by the export job. Response <code>Content-Type</code> is <code>application/x-tar</code> with
+a <code>Content-Disposition: attachment</code> header carrying the export filename.</p>
+<ul>
+<li><code>404 Not Found</code>: <code>jobId</code> is unknown or the on-disk file was removed.</li>
+<li><code>409 Conflict</code>: the job has not reached <code>COMPLETED</code> status yet.</li>
+<li><code>429 Too Many Requests</code>: the per-job download limit has been reached. Body: <code>{ &quot;error&quot;: &quot;Download limit reached&quot;, &quot;message&quot;: &quot;&lt;reason&gt;&quot; }</code> (schema <code>DownloadLimitReachedError</code>).</li>
+</ul>
+<h3 id="delete-apiv1containersunhealthyexportjobid">DELETE /api/v1/containers/unhealthy/export/:jobId</h3>
+<p><strong>Returns</strong></p>
+<p>Cancels the export job. <code>200 OK</code> with empty body on success. <code>404 Not Found</code> if the job cannot be
+cancelled (for example, it has already reached a terminal state).</p>
 <h3 id="get-apiv1containersmismatch">GET /api/v1/containers/mismatch</h3>
 <p><strong>Returns</strong></p>
 <p>Returns the list of mis-matched containers between OM and SCM</p>
@@ -896,6 +1009,36 @@ list of keys mapped to such DELETED state containers.</p>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">...</span>
 </span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><h3 id="get-apiv1containersdeleted">GET /api/v1/containers/deleted</h3>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p>limit (optional)</p>
+<p>Maximum number of DELETED containers to return. Default 1000.</p>
+</li>
+<li>
+<p>prevKey (optional)</p>
+<p>Previous container ID to skip. Use the last returned <code>containerId</code> to fetch the next page.
+Default 0.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Returns all DELETED containers in SCM along with their pipeline and replication info.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;containerId&#34;</span>: <span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;pipelineID&#34;</span>: { <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;1202e6bb-b7c1-4a85-8067-61374b069adb&#34;</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;containerState&#34;</span>: <span style="color:#e6db74">&#34;DELETED&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;stateEnterTime&#34;</span>: <span style="color:#ae81ff">1716123456789</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;lastUsed&#34;</span>: <span style="color:#ae81ff">1716123456789</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;replicationConfig&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationNodes&#34;</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]
 </span></span></code></pre></div><h3 id="get-apiv1keysopen">GET /api/v1/keys/open</h3>
 <p><strong>Parameters</strong></p>
 <ul>
@@ -908,55 +1051,80 @@ Example: prevKey=/vol1/bucket1/key1, this will skip keys till it seeks correctly
 <p>limit (optional)</p>
 <p>Only returns the limited number of results. The default limit is 1000.</p>
 </li>
+<li>
+<p>startPrefix (optional)</p>
+<p>Restricts the listing to keys matching this prefix. Must be at bucket level or deeper
+(e.g. <code>/vol1/bucket1</code> or <code>/vol1/bucket1/dir1</code>); shallower prefixes return <code>400 Bad Request</code>.</p>
+</li>
+<li>
+<p>includeFso (optional)</p>
+<p>Boolean, default <code>false</code>. Include keys/files from FSO buckets in the result.</p>
+</li>
+<li>
+<p>includeNonFso (optional)</p>
+<p>Boolean, default <code>false</code>. Include keys/files from non-FSO (OBS / LEGACY) buckets.</p>
+</li>
 </ul>
+<p>If neither <code>includeFso</code> nor <code>includeNonFso</code> is <code>true</code>, the response will be empty.</p>
 <p><strong>Returns</strong></p>
-<p>Returns set of keys/files which are open.</p>
+<p>Returns set of keys/files which are open. FSO and non-FSO keys are reported in separate arrays.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;lastKey&#34;</span>: <span style="color:#e6db74">&#34;/vol1/fso-bucket/dir1/dir2/file2&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;replicatedTotal&#34;</span>: <span style="color:#ae81ff">13824</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;unreplicatedTotal&#34;</span>: <span style="color:#ae81ff">4608</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;entities&#34;</span>: [
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;replicatedDataSize&#34;</span>: <span style="color:#ae81ff">13824</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;unreplicatedDataSize&#34;</span>: <span style="color:#ae81ff">4608</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;OK&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;fso&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1/key1&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;keyState&#34;</span>: <span style="color:#e6db74">&#34;Open&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;inStateSince&#34;</span>: <span style="color:#ae81ff">1667564193026</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">1024</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">3072</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unreplicatedSize&#34;</span>: <span style="color:#ae81ff">1024</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1/key2&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;keyState&#34;</span>: <span style="color:#e6db74">&#34;Open&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;inStateSince&#34;</span>: <span style="color:#ae81ff">1667564193026</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">512</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">1536</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unreplicatedSize&#34;</span>: <span style="color:#ae81ff">512</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;key&#34;</span>: <span style="color:#e6db74">&#34;/-9223372036854775552/-9223372036854774016/file1&#34;</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/vol1/fso-bucket/dir1/file1&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;keyState&#34;</span>: <span style="color:#e6db74">&#34;Open&#34;</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;inStateSince&#34;</span>: <span style="color:#ae81ff">1667564193026</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">1024</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">3072</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unreplicatedSize&#34;</span>: <span style="color:#ae81ff">1024</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>
-</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationInfo&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;requiredNodes&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;creationTime&#34;</span>: <span style="color:#ae81ff">1667564000000</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;modificationTime&#34;</span>: <span style="color:#ae81ff">1667564193026</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;isKey&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;nonFSO&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/vol1/fso-bucket/dir1/dir2/file2&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;keyState&#34;</span>: <span style="color:#e6db74">&#34;Open&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;key&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1/key1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1/key1&#34;</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;inStateSince&#34;</span>: <span style="color:#ae81ff">1667564193026</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">2048</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">6144</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;unreplicatedSize&#34;</span>: <span style="color:#ae81ff">2048</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">3072</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationInfo&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;requiredNodes&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;creationTime&#34;</span>: <span style="color:#ae81ff">1667564000000</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;modificationTime&#34;</span>: <span style="color:#ae81ff">1667564193026</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;isKey&#34;</span>: <span style="color:#66d9ef">true</span>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1keysopensummary">GET /api/v1/keys/open/summary</h3>
+<p><strong>Returns</strong></p>
+<p>Returns a flat summary of all currently-open keys across the cluster.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalOpenKeys&#34;</span>: <span style="color:#ae81ff">8</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalReplicatedDataSize&#34;</span>: <span style="color:#ae81ff">90000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalUnreplicatedDataSize&#34;</span>: <span style="color:#ae81ff">30000</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1keysopenmpusummary">GET /api/v1/keys/open/mpu/summary</h3>
+<p><strong>Returns</strong></p>
+<p>Returns a flat summary of all currently-open multipart-upload keys across the cluster. Note that
+the unreplicated total is reported as <code>totalDataSize</code> (not <code>totalUnreplicatedDataSize</code>): the
+naming differs from <code>/keys/open/summary</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalOpenMPUKeys&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalReplicatedDataSize&#34;</span>: <span style="color:#ae81ff">90000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalDataSize&#34;</span>: <span style="color:#ae81ff">30000</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="get-apiv1keysdeletepending">GET /api/v1/keys/deletePending</h3>
 <p><strong>Parameters</strong></p>
@@ -970,46 +1138,39 @@ Example: prevKey=/vol1/bucket1/key1, this will skip keys till it seeks correctly
 <p>limit (optional)</p>
 <p>Only returns the limited number of results. The default limit is 1000.</p>
 </li>
+<li>
+<p>startPrefix (optional)</p>
+<p>Restricts the listing to keys matching this prefix. Must be at bucket level or deeper
+(e.g. <code>/vol1/bucket1</code> or <code>/vol1/bucket1/dir1</code>); shallower prefixes return <code>400 Bad Request</code>.</p>
+</li>
 </ul>
 <p><strong>Returns</strong></p>
-<p>Returns set of keys/files pending for deletion.</p>
+<p>Returns the set of keys/files pending deletion, paired with aggregated size totals. Each item in
+<code>deletedKeyInfo</code> is a <code>RepeatedOmKeyInfo</code> (a wrapper around one or more <code>OmKeyInfo</code> entries).</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;lastKey&#34;</span>: <span style="color:#e6db74">&#34;sampleVol/bucketOne/key_one&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;replicatedTotal&#34;</span>: <span style="color:#ae81ff">-1530804718628866300</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;unreplicatedTotal&#34;</span>: <span style="color:#ae81ff">-1530804718628866300</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;deletedkeyinfo&#34;</span>: [
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;replicatedDataSize&#34;</span>: <span style="color:#ae81ff">1800000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;unreplicatedDataSize&#34;</span>: <span style="color:#ae81ff">600000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;deletedKeyInfo&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;omKeyInfoList&#34;</span>: [
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;metadata&#34;</span>: {},
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;objectID&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;updateID&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;parentObjectID&#34;</span>: <span style="color:#ae81ff">0</span>,
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;volumeName&#34;</span>: <span style="color:#e6db74">&#34;sampleVol&#34;</span>,
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;bucketName&#34;</span>: <span style="color:#e6db74">&#34;bucketOne&#34;</span>,
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;keyName&#34;</span>: <span style="color:#e6db74">&#34;key_one&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;dataSize&#34;</span>: <span style="color:#ae81ff">-1530804718628866300</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;keyLocationVersions&#34;</span>: [],
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;creationTime&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;modificationTime&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;dataSize&#34;</span>: <span style="color:#ae81ff">200000</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">600000</span>,
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;replicationConfig&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;ONE&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;requiredNodes&#34;</span>: <span style="color:#ae81ff">1</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;STANDALONE&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;requiredNodes&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>
 </span></span><span style="display:flex;"><span>          },
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;fileChecksum&#34;</span>: <span style="color:#66d9ef">null</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;fileName&#34;</span>: <span style="color:#e6db74">&#34;key_one&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;acls&#34;</span>: [],
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;0/key_one&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;file&#34;</span>: <span style="color:#66d9ef">false</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;latestVersionLocations&#34;</span>: <span style="color:#66d9ef">null</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">-1530804718628866300</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;fileEncryptionInfo&#34;</span>: <span style="color:#66d9ef">null</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;objectInfo&#34;</span>: <span style="color:#e6db74">&#34;OMKeyInfo{volume=&#39;sampleVol&#39;, bucket=&#39;bucketOne&#39;, key=&#39;key_one&#39;, dataSize=&#39;-1530804718628866186&#39;, creationTime=&#39;0&#39;, objectID=&#39;0&#39;, parentID=&#39;0&#39;, replication=&#39;STANDALONE/ONE&#39;, fileChecksum=&#39;null}&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;updateIDset&#34;</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;creationTime&#34;</span>: <span style="color:#ae81ff">1717000000000</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;modificationTime&#34;</span>: <span style="color:#ae81ff">1717100000000</span>
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>      ]
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">...</span>
 </span></span><span style="display:flex;"><span>  ],
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;OK&#34;</span>
 </span></span><span style="display:flex;"><span>}
@@ -1027,46 +1188,106 @@ Example: prevKey=/vol1/bucket1/bucket1/dir1, this will skip directories till it 
 </li>
 </ul>
 <p><strong>Returns</strong></p>
-<p>Returns set of directories pending for deletion.</p>
+<p>Returns the set of directories pending for deletion. Each entry in <code>deletedDirInfo</code> is a
+<code>KeyEntityInfo</code> describing one pending-delete directory (not a <code>RepeatedOmKeyInfo</code> like
+<code>/keys/deletePending</code>).</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;lastKey&#34;</span>: <span style="color:#e6db74">&#34;vol1/bucket1/bucket1/dir1&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;replicatedTotal&#34;</span>: <span style="color:#ae81ff">-1530804718628866300</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;unreplicatedTotal&#34;</span>: <span style="color:#ae81ff">-1530804718628866300</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;deletedkeyinfo&#34;</span>: [
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;lastKey&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1/dir1&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;replicatedDataSize&#34;</span>: <span style="color:#ae81ff">13824</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;unreplicatedDataSize&#34;</span>: <span style="color:#ae81ff">4608</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;deletedDirInfo&#34;</span>: [
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;omKeyInfoList&#34;</span>: [
-</span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;metadata&#34;</span>: {},
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;objectID&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;updateID&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;parentObjectID&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;volumeName&#34;</span>: <span style="color:#e6db74">&#34;sampleVol&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;bucketName&#34;</span>: <span style="color:#e6db74">&#34;bucketOne&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;keyName&#34;</span>: <span style="color:#e6db74">&#34;key_one&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;dataSize&#34;</span>: <span style="color:#ae81ff">-1530804718628866300</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;keyLocationVersions&#34;</span>: [],
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;creationTime&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;modificationTime&#34;</span>: <span style="color:#ae81ff">0</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;replicationConfig&#34;</span>: {
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;ONE&#34;</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;requiredNodes&#34;</span>: <span style="color:#ae81ff">1</span>,
-</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;STANDALONE&#34;</span>
-</span></span><span style="display:flex;"><span>          },
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;fileChecksum&#34;</span>: <span style="color:#66d9ef">null</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;fileName&#34;</span>: <span style="color:#e6db74">&#34;key_one&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;acls&#34;</span>: [],
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;0/key_one&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;file&#34;</span>: <span style="color:#66d9ef">false</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;latestVersionLocations&#34;</span>: <span style="color:#66d9ef">null</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">-1530804718628866300</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;fileEncryptionInfo&#34;</span>: <span style="color:#66d9ef">null</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;objectInfo&#34;</span>: <span style="color:#e6db74">&#34;OMKeyInfo{volume=&#39;sampleVol&#39;, bucket=&#39;bucketOne&#39;, key=&#39;key_one&#39;, dataSize=&#39;-1530804718628866186&#39;, creationTime=&#39;0&#39;, objectID=&#39;0&#39;, parentID=&#39;0&#39;, replication=&#39;STANDALONE/ONE&#39;, fileChecksum=&#39;null}&#34;</span>,
-</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;updateIDset&#34;</span>: <span style="color:#66d9ef">false</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;key&#34;</span>: <span style="color:#e6db74">&#34;/-9223372036854775552/-9223372036854774016/dir1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1/dir1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;inStateSince&#34;</span>: <span style="color:#ae81ff">1717000000000</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">4608</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">13824</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationInfo&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;requiredNodes&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;creationTime&#34;</span>: <span style="color:#ae81ff">1716900000000</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;modificationTime&#34;</span>: <span style="color:#ae81ff">1716999999999</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;isKey&#34;</span>: <span style="color:#66d9ef">false</span>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  ],
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;OK&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1keysdeletependingsummary">GET /api/v1/keys/deletePending/summary</h3>
+<p><strong>Returns</strong></p>
+<p>Returns a flat summary of all keys pending deletion across the cluster.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalDeletedKeys&#34;</span>: <span style="color:#ae81ff">8</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalReplicatedDataSize&#34;</span>: <span style="color:#ae81ff">90000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalUnreplicatedDataSize&#34;</span>: <span style="color:#ae81ff">30000</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1keysdeletependingdirssummary">GET /api/v1/keys/deletePending/dirs/summary</h3>
+<p><strong>Returns</strong></p>
+<p>Returns the total count of directories pending deletion.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalDeletedDirectories&#34;</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1keyslistkeys">GET /api/v1/keys/listKeys</h3>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p>startPrefix (optional, but effectively required)</p>
+<p>Bucket-level or deeper prefix (e.g. <code>/vol1/bucket1</code> or <code>/vol1/bucket1/dir1</code>). HTTP-level the
+parameter is optional (defaults to <code>/</code>), but the handler rejects anything shallower than
+bucket level with <code>400 Bad Request</code>, so in practice callers must supply one.</p>
+</li>
+<li>
+<p>replicationType (optional)</p>
+<p>Filter by replication type (e.g. <code>RATIS</code>, <code>EC</code>).</p>
+</li>
+<li>
+<p>creationDate (optional)</p>
+<p>Filter by creation date; only keys created on or after this date are returned.</p>
+</li>
+<li>
+<p>keySize (optional)</p>
+<p>Filter to keys with data size at least this many bytes. Default 0.</p>
+</li>
+<li>
+<p>prevKey (optional)</p>
+<p>Pagination cursor. Pass back the <code>lastKey</code> from the previous response to continue iteration.</p>
+</li>
+<li>
+<p>limit (optional)</p>
+<p>Maximum number of keys to return. Default 1000.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Returns committed keys (and files in FSO buckets) under the given prefix.</p>
+<ul>
+<li><code>200 OK</code> with a <code>ListKeysResponse</code> body.</li>
+<li><code>204 No Content</code> when no keys matched the given filters.</li>
+<li><code>400 Bad Request</code> when <code>startPrefix</code> is missing or shallower than bucket level.</li>
+<li><code>503 Service Unavailable</code> while Recon is still bootstrapping OM DB; response body status is <code>INITIALIZING</code>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;OK&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;replicatedDataSize&#34;</span>: <span style="color:#ae81ff">600000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;unReplicatedDataSize&#34;</span>: <span style="color:#ae81ff">200000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;lastKey&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1/dir1/file42&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;keys&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;key&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1/dir1/file42&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/vol1/bucket1/dir1/file42&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">1048576</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicatedSize&#34;</span>: <span style="color:#ae81ff">3145728</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;replicationInfo&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#e6db74">&#34;THREE&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;requiredNodes&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;creationTime&#34;</span>: <span style="color:#ae81ff">1717000000000</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;modificationTime&#34;</span>: <span style="color:#ae81ff">1717100000000</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;isKey&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="blocks-metadata-admin-only">Blocks Metadata (admin only)</h2>
 <h3 id="get-apiv1blocksdeletepending">GET /api/v1/blocks/deletePending</h3>
@@ -1278,20 +1499,33 @@ map to the first bin (index); for keys larger than <code>1 PB</code>, map to the
 <p>No parameters.</p>
 <p><strong>Returns</strong></p>
 <p>Returns a summary of the current state of the Ozone cluster.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>     {
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;pipelines&#34;</span>: <span style="color:#ae81ff">5</span>,
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;totalDatanodes&#34;</span>: <span style="color:#ae81ff">4</span>,
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;healthyDatanodes&#34;</span>: <span style="color:#ae81ff">4</span>,
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;storageReport&#34;</span>: {
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;capacity&#34;</span>: <span style="color:#ae81ff">1081719668736</span>,
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;used&#34;</span>: <span style="color:#ae81ff">1309212672</span>,
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;remaining&#34;</span>: <span style="color:#ae81ff">597361258496</span>
-</span></span><span style="display:flex;"><span>     	},
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;containers&#34;</span>: <span style="color:#ae81ff">26</span>,
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;volumes&#34;</span>: <span style="color:#ae81ff">6</span>,
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;buckets&#34;</span>: <span style="color:#ae81ff">26</span>,
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;keys&#34;</span>: <span style="color:#ae81ff">25</span>
-</span></span><span style="display:flex;"><span>     }
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;pipelines&#34;</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalDatanodes&#34;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;healthyDatanodes&#34;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;storageReport&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;capacity&#34;</span>: <span style="color:#ae81ff">1081719668736</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;used&#34;</span>: <span style="color:#ae81ff">1309212672</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;remaining&#34;</span>: <span style="color:#ae81ff">597361258496</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;committed&#34;</span>: <span style="color:#ae81ff">27007111</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;reserved&#34;</span>: <span style="color:#ae81ff">31457280</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;minimumFreeSpace&#34;</span>: <span style="color:#ae81ff">20480</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;filesystemCapacity&#34;</span>: <span style="color:#ae81ff">1081730000000</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;filesystemUsed&#34;</span>: <span style="color:#ae81ff">1310000000</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;filesystemAvailable&#34;</span>: <span style="color:#ae81ff">597361258496</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;containers&#34;</span>: <span style="color:#ae81ff">26</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;missingContainers&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;openContainers&#34;</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;deletedContainers&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;volumes&#34;</span>: <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;buckets&#34;</span>: <span style="color:#ae81ff">26</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;keys&#34;</span>: <span style="color:#ae81ff">25</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;keysPendingDeletion&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;deletedDirs&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;scmServiceId&#34;</span>: <span style="color:#e6db74">&#34;scmservice&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;omServiceId&#34;</span>: <span style="color:#e6db74">&#34;omservice&#34;</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="volumes-admin-only">Volumes (admin only)</h2>
 <h3 id="get-apiv1volumes">GET /api/v1/volumes</h3>
 <p><strong>Parameters</strong></p>
@@ -1393,35 +1627,42 @@ If <code>volume</code> is specified, it returns only the buckets under <code>vol
 <p>No parameters.</p>
 <p><strong>Returns</strong></p>
 <p>Returns all the datanodes in the cluster.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>     {
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;totalCount&#34;</span>: <span style="color:#ae81ff">4</span>,
-</span></span><span style="display:flex;"><span>     	<span style="color:#f92672">&#34;datanodes&#34;</span>: [{
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;uuid&#34;</span>: <span style="color:#e6db74">&#34;f8f8cb45-3ab2-4123&#34;</span>,
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;hostname&#34;</span>: <span style="color:#e6db74">&#34;localhost-1&#34;</span>,
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;HEALTHY&#34;</span>,
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;lastHeartbeat&#34;</span>: <span style="color:#ae81ff">1605738400544</span>,
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;storageReport&#34;</span>: {
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;capacity&#34;</span>: <span style="color:#ae81ff">270429917184</span>,
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;used&#34;</span>: <span style="color:#ae81ff">358805504</span>,
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;remaining&#34;</span>: <span style="color:#ae81ff">119648149504</span>
-</span></span><span style="display:flex;"><span>     		},
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;pipelines&#34;</span>: [{
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;pipelineID&#34;</span>: <span style="color:#e6db74">&#34;b9415b20-b9bd-4225&#34;</span>,
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>,
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#ae81ff">3</span>,
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;leaderNode&#34;</span>: <span style="color:#e6db74">&#34;localhost-2&#34;</span>
-</span></span><span style="display:flex;"><span>     		}, {
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;pipelineID&#34;</span>: <span style="color:#e6db74">&#34;3bf4a9e9-69cc-4d20&#34;</span>,
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>,
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#ae81ff">1</span>,
-</span></span><span style="display:flex;"><span>     			<span style="color:#f92672">&#34;leaderNode&#34;</span>: <span style="color:#e6db74">&#34;localhost-1&#34;</span>
-</span></span><span style="display:flex;"><span>     		}],
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;containers&#34;</span>: <span style="color:#ae81ff">17</span>,
-</span></span><span style="display:flex;"><span>     		<span style="color:#f92672">&#34;leaderCount&#34;</span>: <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>     	},
-</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">...</span>
-</span></span><span style="display:flex;"><span>        ]
-</span></span><span style="display:flex;"><span>     }
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalCount&#34;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;datanodes&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;uuid&#34;</span>: <span style="color:#e6db74">&#34;f8f8cb45-3ab2-4123&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;hostname&#34;</span>: <span style="color:#e6db74">&#34;localhost-1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;HEALTHY&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;opState&#34;</span>: <span style="color:#e6db74">&#34;IN_SERVICE&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;lastHeartbeat&#34;</span>: <span style="color:#ae81ff">1605738400544</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;storageReport&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;capacity&#34;</span>: <span style="color:#ae81ff">270429917184</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;used&#34;</span>: <span style="color:#ae81ff">358805504</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;remaining&#34;</span>: <span style="color:#ae81ff">270071111680</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;committed&#34;</span>: <span style="color:#ae81ff">27007111</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;reserved&#34;</span>: <span style="color:#ae81ff">31457280</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;minimumFreeSpace&#34;</span>: <span style="color:#ae81ff">20480</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;filesystemCapacity&#34;</span>: <span style="color:#ae81ff">270461374464</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;filesystemUsed&#34;</span>: <span style="color:#ae81ff">390262784</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;filesystemAvailable&#34;</span>: <span style="color:#ae81ff">270071111680</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;pipelines&#34;</span>: [
+</span></span><span style="display:flex;"><span>        { <span style="color:#f92672">&#34;pipelineID&#34;</span>: <span style="color:#e6db74">&#34;b9415b20-b9bd-4225&#34;</span>, <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>, <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#ae81ff">3</span>, <span style="color:#f92672">&#34;leaderNode&#34;</span>: <span style="color:#e6db74">&#34;localhost-2&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#f92672">&#34;pipelineID&#34;</span>: <span style="color:#e6db74">&#34;3bf4a9e9-69cc-4d20&#34;</span>, <span style="color:#f92672">&#34;replicationType&#34;</span>: <span style="color:#e6db74">&#34;RATIS&#34;</span>, <span style="color:#f92672">&#34;replicationFactor&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&#34;leaderNode&#34;</span>: <span style="color:#e6db74">&#34;localhost-1&#34;</span> }
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;containers&#34;</span>: <span style="color:#ae81ff">17</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;openContainers&#34;</span>: <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;leaderCount&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;2.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;setupTime&#34;</span>: <span style="color:#ae81ff">1605700000000</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;revision&#34;</span>: <span style="color:#e6db74">&#34;abcdef1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;layoutVersion&#34;</span>: <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;networkLocation&#34;</span>: <span style="color:#e6db74">&#34;/default-rack&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">...</span>
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="put-apiv1datanodesremove">PUT /api/v1/datanodes/remove</h3>
 <p><strong>Parameters</strong></p>
 <ul>
@@ -1429,24 +1670,83 @@ If <code>volume</code> is specified, it returns only the buckets under <code>vol
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;50ca4c95-2ef3-4430-b944-97d2442c3daf&#34;</span>
-</span></span><span style="display:flex;"><span>]  
+</span></span><span style="display:flex;"><span>]
 </span></span></code></pre></div><p><strong>Returns</strong></p>
-<p>Returns the list of datanodes which are removed successfully and list of datanodes which were not found.</p>
+<p>Returns a <code>datanodesResponseMap</code> keyed by the outcome category. Each value is a <code>DatanodesResponse</code>
+(same shape as <code>GET /api/v1/datanodes</code>). Categories that have no entries for a given request are
+omitted (not present as empty arrays).</p>
+<ul>
+<li><code>removedDatanodes</code>: successfully removed.</li>
+<li><code>failedDatanodes</code>: pre-checks failed (e.g. node is not DEAD, or still has open containers/pipelines). Includes <code>totalCount</code> and a per-uuid <code>errors</code> map describing the failure reason; <code>datanodes</code> is empty.</li>
+<li><code>notFoundDatanodes</code>: uuid did not match any known datanode.</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;removedNodes&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalCount&#34;</span>: <span style="color:#ae81ff">1</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;datanodes&#34;</span>: [
-</span></span><span style="display:flex;"><span>      {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;uuid&#34;</span>: <span style="color:#e6db74">&#34;50ca4c95-2ef3-4430-b944-97d2442c3daf&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;hostname&#34;</span>: <span style="color:#e6db74">&#34;ozone-datanode-4.ozone_default&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;DEAD&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;pipelines&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;datanodesResponseMap&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;removedDatanodes&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;totalCount&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;datanodes&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;uuid&#34;</span>: <span style="color:#e6db74">&#34;50ca4c95-2ef3-4430-b944-97d2442c3daf&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;hostname&#34;</span>: <span style="color:#e6db74">&#34;ozone-datanode-4.ozone_default&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;DEAD&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;failedDatanodes&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;totalCount&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;datanodes&#34;</span>: [],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;errors&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;60ca4c95-...&#34;</span>: <span style="color:#e6db74">&#34;Open Containers/Pipelines&#34;</span>
 </span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    ],
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Success&#34;</span>
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}     
-</span></span></code></pre></div><h2 id="pipelines">Pipelines</h2>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1datanodesdecommissioninfo">GET /api/v1/datanodes/decommission/info</h3>
+<p><strong>Parameters</strong></p>
+<p>No parameters.</p>
+<p><strong>Returns</strong></p>
+<p>Returns info for every datanode currently in the <code>DECOMMISSIONING</code> state. Each entry wraps the
+datanode details, the per-state container list, and decommission metrics from the SCM JMX bean
+<code>Hadoop:service=StorageContainerManager,name=NodeDecommissionMetrics</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;DatanodesDecommissionInfo&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;datanodeDetails&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;uuid&#34;</span>: <span style="color:#e6db74">&#34;f8f8cb45-3ab2-4123&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;hostName&#34;</span>: <span style="color:#e6db74">&#34;ozone-datanode-3&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;ipAddress&#34;</span>: <span style="color:#e6db74">&#34;10.0.0.13&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;persistedOpState&#34;</span>: <span style="color:#e6db74">&#34;DECOMMISSIONING&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;metrics&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;decommissionStartTime&#34;</span>: <span style="color:#e6db74">&#34;2024-05-01T10:00:00Z&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;numOfUnclosedContainers&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;numOfUnclosedPipelines&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;numOfUnderReplicatedContainers&#34;</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;containers&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;OPEN&#34;</span>: [<span style="color:#e6db74">&#34;#1234&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;CLOSED&#34;</span>: [<span style="color:#e6db74">&#34;#1235&#34;</span>, <span style="color:#e6db74">&#34;#1236&#34;</span>]
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1datanodesdecommissioninfodatanode">GET /api/v1/datanodes/decommission/info/datanode</h3>
+<p>Returns info for a single decommissioning datanode. Provide either <code>uuid</code> or <code>ipAddress</code>. If both
+are passed, <code>uuid</code> wins. Omitting both returns an error.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p>uuid (optional)</p>
+<p>UUID of the decommissioning datanode.</p>
+</li>
+<li>
+<p>ipAddress (optional)</p>
+<p>IP address of the decommissioning datanode. Used when <code>uuid</code> is not provided.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>Same shape as <code>/api/v1/datanodes/decommission/info</code>, but the array contains at most one entry.</p>
+<h2 id="pipelines">Pipelines</h2>
 <h3 id="get-apiv1pipelines">GET /api/v1/pipelines</h3>
 <p><strong>Parameters</strong></p>
 <p>No parameters.</p>
@@ -1571,6 +1871,224 @@ Example: /api/v1/metrics/query?query=ratis_leader_election_electionCount</p>
 </span></span><span style="display:flex;"><span>         ]
 </span></span><span style="display:flex;"><span>       }
 </span></span><span style="display:flex;"><span>     }
+</span></span></code></pre></div><h2 id="storage-distribution-admin-only">Storage Distribution (admin only)</h2>
+<h3 id="get-apiv1storagedistribution">GET /api/v1/storageDistribution</h3>
+<p><strong>Parameters</strong></p>
+<p>No parameters.</p>
+<p><strong>Returns</strong></p>
+<p>Aggregated storage capacity distribution across the cluster, including the global storage hierarchy
+(filesystem capacity, Ozone capacity, used/free/reserved/committed space), namespace totals, a
+breakdown of used space (open vs finalized), and per-datanode storage reports.</p>
+<p><code>500 Internal Server Error</code> (text/plain body) is returned if the report cannot be produced.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;globalStorage&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalFileSystemCapacity&#34;</span>: <span style="color:#ae81ff">270461374464</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalReservedSpace&#34;</span>: <span style="color:#ae81ff">31457280</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalOzoneCapacity&#34;</span>: <span style="color:#ae81ff">270429917184</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalOzoneUsedSpace&#34;</span>: <span style="color:#ae81ff">358805504</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalOzoneFreeSpace&#34;</span>: <span style="color:#ae81ff">270071111680</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalOzoneCommittedSpace&#34;</span>: <span style="color:#ae81ff">27007111</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalMinimumFreeSpace&#34;</span>: <span style="color:#ae81ff">20480</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;globalNamespace&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalUsedSpace&#34;</span>: <span style="color:#ae81ff">500000000</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;totalKeys&#34;</span>: <span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;usedSpaceBreakdown&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;openKeyBytes&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;openKeyAndFileBytes&#34;</span>: <span style="color:#ae81ff">13824</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;multipartOpenKeyBytes&#34;</span>: <span style="color:#ae81ff">4096</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;totalOpenKeyBytes&#34;</span>: <span style="color:#ae81ff">17920</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;finalizedKeyBytes&#34;</span>: <span style="color:#ae81ff">450000000</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;dataNodeUsage&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;datanodeUuid&#34;</span>: <span style="color:#e6db74">&#34;841be80f-0454-47df-b676&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;hostName&#34;</span>: <span style="color:#e6db74">&#34;ozone-datanode-1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;capacity&#34;</span>: <span style="color:#ae81ff">270429917184</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;used&#34;</span>: <span style="color:#ae81ff">358805504</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;remaining&#34;</span>: <span style="color:#ae81ff">270071111680</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;committed&#34;</span>: <span style="color:#ae81ff">27007111</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;minimumFreeSpace&#34;</span>: <span style="color:#ae81ff">20480</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;reserved&#34;</span>: <span style="color:#ae81ff">31457280</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;filesystemCapacity&#34;</span>: <span style="color:#ae81ff">270461374464</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;filesystemUsed&#34;</span>: <span style="color:#ae81ff">390262784</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;filesystemAvailable&#34;</span>: <span style="color:#ae81ff">270071111680</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1storagedistributiondownload">GET /api/v1/storageDistribution/download</h3>
+<p><strong>Parameters</strong></p>
+<p>No parameters.</p>
+<p><strong>Returns</strong></p>
+<p>Triggers or polls a background per-datanode metrics collection. The response varies by collection
+state:</p>
+<ul>
+<li><code>200 OK</code> (<code>text/csv</code>) when collection is FINISHED. The CSV columns are HostName, Datanode UUID,
+Filesystem Capacity, Filesystem Used Space, Filesystem Remaining Space, Ozone Capacity, Ozone Used
+Space, Ozone Remaining Space, PreAllocated Container Space, Reserved Space, Minimum Free Space,
+Pending Block Size. A <code>Content-Disposition: attachment</code> header carries the file name.</li>
+<li><code>202 Accepted</code> (<code>application/json</code>, body matches <code>DataNodeMetricsServiceResponse</code>) when collection
+is NOT_STARTED or IN_PROGRESS. Poll the endpoint again until status is FINISHED.</li>
+<li><code>500 Internal Server Error</code> (<code>text/plain</code>) if collection is marked FINISHED but the metrics data
+is missing.</li>
+</ul>
+<h2 id="pending-deletion-admin-only">Pending Deletion (admin only)</h2>
+<h3 id="get-apiv1pendingdeletion">GET /api/v1/pendingDeletion</h3>
+<p>Returns pending-deletion statistics for one of the three Ozone components.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p>component (required)</p>
+<p>One of <code>scm</code>, <code>om</code>, <code>dn</code>. Selects the source whose pending-deletion data should be returned.</p>
+</li>
+<li>
+<p>limit (optional)</p>
+<p>Maximum number of per-datanode entries to return. Only applies when <code>component=dn</code>. Must be at
+least 1.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>The response body depends on <code>component</code>:</p>
+<ul>
+<li><code>component=scm</code>
+<ul>
+<li><code>200 OK</code> with a <code>ScmPendingDeletion</code> object (<code>totalBlocksize</code>, <code>totalReplicatedBlockSize</code>,
+<code>totalBlocksCount</code>).</li>
+<li><code>204 No Content</code> if SCM has no pending-deletion summary yet.</li>
+</ul>
+</li>
+<li><code>component=om</code>
+<ul>
+<li><code>200 OK</code> with a map keyed by category (typical keys: <code>pendingDirectorySize</code>,
+<code>pendingKeySize</code>). Values are byte counts.</li>
+</ul>
+</li>
+<li><code>component=dn</code>
+<ul>
+<li><code>200 OK</code> with a <code>DataNodeMetricsServiceResponse</code> body when the background metrics collection
+has FINISHED.</li>
+<li><code>202 Accepted</code> with the same shape while collection is NOT_STARTED or IN_PROGRESS; poll until
+<code>status</code> becomes <code>FINISHED</code>.</li>
+</ul>
+</li>
+</ul>
+<p><code>400 Bad Request</code> (text/plain) is returned when <code>component</code> is missing/invalid, or when
+<code>component=dn</code> and <code>limit &lt; 1</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalBlocksize&#34;</span>: <span style="color:#ae81ff">10485760</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalReplicatedBlockSize&#34;</span>: <span style="color:#ae81ff">31457280</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;totalBlocksCount&#34;</span>: <span style="color:#ae81ff">500</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="heat-map-admin-only">Heat Map (admin only)</h2>
+<p>Read-access heatmap data is feature-gated. If the HeatMap feature is listed by
+<code>/api/v1/features/disabledFeatures</code>, <code>/api/v1/heatmap/readaccess</code> returns <code>404 Not Found</code>.</p>
+<h3 id="get-apiv1heatmapreadaccess">GET /api/v1/heatmap/readaccess</h3>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>
+<p>startDate (optional)</p>
+<p>Look-back window for access aggregation. Default <code>24H</code>.</p>
+</li>
+<li>
+<p>entityType (optional)</p>
+<p>Entity granularity. Default <code>key</code>.</p>
+</li>
+<li>
+<p>path (optional)</p>
+<p>Restrict the heatmap to this path prefix.</p>
+</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p>A nested <code>EntityReadAccessHeatMap</code> tree. The root represents <code>/</code>; children represent volumes, then
+buckets, then directories, then keys. Each node carries <code>size</code>, <code>accessCount</code>,
+<code>minAccessCount</code>/<code>maxAccessCount</code>, and a normalized <code>color</code> value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;root&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">12345678</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;accessCount&#34;</span>: <span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;minAccessCount&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;maxAccessCount&#34;</span>: <span style="color:#ae81ff">250</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;color&#34;</span>: <span style="color:#ae81ff">0.5</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;children&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;vol1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/vol1&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;size&#34;</span>: <span style="color:#ae81ff">8345678</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;accessCount&#34;</span>: <span style="color:#ae81ff">750</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;color&#34;</span>: <span style="color:#ae81ff">0.75</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;children&#34;</span>: []
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1heatmaphealthcheck">GET /api/v1/heatmap/healthCheck</h3>
+<p><strong>Returns</strong></p>
+<p>Health-check response from the configured HeatMap provider. The body shape depends on the provider
+implementation.</p>
+<h2 id="features-admin-only">Features (admin only)</h2>
+<h3 id="get-apiv1featuresdisabledfeatures">GET /api/v1/features/disabledFeatures</h3>
+<p><strong>Returns</strong></p>
+<p>JSON array of feature enum names that are currently disabled. The only feature name in use today
+is <code>HEATMAP</code>. Useful for the UI to decide whether to show or grey out feature-gated controls.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>[<span style="color:#e6db74">&#34;HEATMAP&#34;</span>]
+</span></span></code></pre></div><h2 id="admin-utilities-admin-only">Admin Utilities (admin only)</h2>
+<h3 id="get-apiv1triggerdbsyncom">GET /api/v1/triggerdbsync/om</h3>
+<p><strong>Returns</strong></p>
+<p>Requests Recon to start an immediate sync from the Ozone Manager DB. Returns a boolean indicating
+whether the sync request was accepted by the OM service provider.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><h3 id="post-apiv1triggerdbsyncscmsnapshot">POST /api/v1/triggerdbsync/scm/snapshot</h3>
+<p><strong>Returns</strong></p>
+<p>Starts a one-shot SCM DB snapshot sync in the background. Idempotent. The response always carries
+the current <code>ScmDbSnapshotSyncStatus</code> so callers can distinguish &ldquo;accepted and started&rdquo; from
+&ldquo;rejected because another sync is already in progress&rdquo;.</p>
+<ul>
+<li><code>202 Accepted</code>: sync accepted and started. Body has <code>accepted: true</code>.</li>
+<li><code>409 Conflict</code>: another SCM DB sync is already running. Body has <code>accepted: false</code>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;accepted&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;IN_PROGRESS&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;SCM DB snapshot sync started.&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="get-apiv1triggerdbsyncscmsnapshotstatus">GET /api/v1/triggerdbsync/scm/snapshot/status</h3>
+<p><strong>Returns</strong></p>
+<p>Current status of the triggered SCM DB snapshot sync. Always returns 200, even when no sync has
+ever run (status will be <code>IDLE</code>, phase <code>NONE</code>, <code>startedAt</code>/<code>finishedAt</code> zero).</p>
+<ul>
+<li><code>status</code>: one of <code>IDLE</code>, <code>IN_PROGRESS</code>, <code>SUCCESS</code>, <code>FAILED</code>, <code>CANCELLED</code>.</li>
+<li><code>phase</code>: one of <code>NONE</code>, <code>DOWNLOADING_CHECKPOINT</code>, <code>INITIALIZING_DB</code>, <code>SWAPPING_DB</code>,
+<code>COMPLETED</code>, <code>FAILED</code>, <code>CANCELLED</code>.</li>
+<li><code>cancelAllowed</code>: true only while in <code>DOWNLOADING_CHECKPOINT</code>. Once the phase advances to
+<code>INITIALIZING_DB</code>, cancellation is no longer honored.</li>
+<li><code>durationMs</code>: elapsed time in millis; for a running sync, computed against <code>now()</code>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;IN_PROGRESS&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;phase&#34;</span>: <span style="color:#e6db74">&#34;DOWNLOADING_CHECKPOINT&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;startedAt&#34;</span>: <span style="color:#ae81ff">1718640123456</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;finishedAt&#34;</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;durationMs&#34;</span>: <span style="color:#ae81ff">12345</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cancelAllowed&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;lastError&#34;</span>: <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="post-apiv1triggerdbsyncscmsnapshotcancel">POST /api/v1/triggerdbsync/scm/snapshot/cancel</h3>
+<p><strong>Returns</strong></p>
+<p>Cancels an in-progress SCM DB snapshot sync. Only honored while <code>status == IN_PROGRESS</code> and
+<code>cancelAllowed == true</code> (see <code>/triggerdbsync/scm/snapshot/status</code>).</p>
+<ul>
+<li><code>200 OK</code>: cancellation accepted and the sync has been cancelled. Body has <code>cancelled: true</code>.</li>
+<li><code>409 Conflict</code>: no sync is running, or the sync has passed the cancellable phase. Body has
+<code>cancelled: false</code> and <code>message</code> explains which.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cancelled&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;CANCELLED&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;phase&#34;</span>: <span style="color:#e6db74">&#34;CANCELLED&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;SCM DB snapshot sync cancelled.&#34;</span>
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
 
           
@@ -1590,7 +2108,7 @@ Example: /api/v1/metrics/query?query=ratis_leader_election_electionCount</p>
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.2.0-SNAPSHOT, Last Modified: June 11, 2025 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/bbaf71e71e4d04397fb2d7013c30664028cd1241">bbaf71e71e</a>
+      Version: 2.2.0-SNAPSHOT, Last Modified: June 5, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/fffb963577311fab8ec95c33dc6e5fe8adb1ca78">fffb963577</a>
     </span>
   </div>
 </footer>
