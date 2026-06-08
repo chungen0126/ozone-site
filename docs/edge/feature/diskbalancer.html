@@ -743,7 +743,7 @@ restart the datanode service for the changes to take effect.</p>
       </tr>
       <tr>
           <td><code>--in-service-datanodes</code></td>
-          <td>It queries SCM for all IN_SERVICE datanodes and executes the command on all of them.</td>
+          <td>It queries SCM for all IN_SERVICE and HEALTHY datanodes and executes the command on all of them.</td>
           <td><code>--in-service-datanodes</code></td>
       </tr>
       <tr>
@@ -763,7 +763,7 @@ restart the datanode service for the changes to take effect.</p>
       </tr>
       <tr>
           <td><code>-p/--parallel-thread</code></td>
-          <td>Number of parallel threads (default: 1). Used with <code>start</code> and <code>update</code> commands.</td>
+          <td>Number of parallel threads (default: 5). Used with <code>start</code> and <code>update</code> commands.</td>
           <td><code>-p 5</code><br><code>--parallel-thread 10</code></td>
       </tr>
       <tr>
@@ -773,8 +773,8 @@ restart the datanode service for the changes to take effect.</p>
       </tr>
       <tr>
           <td><code>-c/--container-states</code></td>
-          <td>Comma-separated container lifecycle state names that may be moved between disks . Used with <code>start</code> and <code>update</code> commands.</td>
-          <td><code>-c CLOSED,QUASI_CLOSED</code><br><code>--container-states OPEN,CLOSED</code></td>
+          <td>Comma-separated container lifecycle state names that may be moved between disks. Used with <code>start</code> and <code>update</code> commands.</td>
+          <td><code>-c CLOSED,QUASI_CLOSED</code><br><code>--container-states CLOSED</code></td>
       </tr>
   </tbody>
 </table>
@@ -783,7 +783,7 @@ restart the datanode service for the changes to take effect.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start DiskBalancer on multiple datanodes</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer start DN-1 DN-2 DN-3
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start DiskBalancer on all IN_SERVICE datanodes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start DiskBalancer on all IN_SERVICE and HEALTHY datanodes</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer start --in-service-datanodes
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Start DiskBalancer with configuration parameters</span>
@@ -800,7 +800,7 @@ restart the datanode service for the changes to take effect.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Stop DiskBalancer on multiple datanodes</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer stop DN-1 DN-2 DN-3
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stop DiskBalancer on all IN_SERVICE datanodes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stop DiskBalancer on all IN_SERVICE and HEALTHY datanodes</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer stop --in-service-datanodes
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Stop DiskBalancer with json output</span>
@@ -810,7 +810,7 @@ restart the datanode service for the changes to take effect.</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Update multiple parameters</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer update DN-1 -t <span style="color:#ae81ff">5</span> -b <span style="color:#ae81ff">50</span> -p <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Update on all IN_SERVICE datanodes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Update on all IN_SERVICE and HEALTHY datanodes</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer update --in-service-datanodes -t <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Or using the long form:</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer update --in-service-datanodes --threshold-percentage <span style="color:#ae81ff">5</span>
@@ -821,7 +821,7 @@ restart the datanode service for the changes to take effect.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get status from multiple datanodes</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer status DN-1 DN-2 DN-3
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get status from all IN_SERVICE datanodes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get status from all IN_SERVICE and HEALTHY datanodes</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer status --in-service-datanodes
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Get status as JSON</span>
@@ -830,7 +830,7 @@ restart the datanode service for the changes to take effect.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get report from multiple datanodes</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer report DN-1 DN-2 DN-3
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get report from all IN_SERVICE datanodes</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get report from all IN_SERVICE and HEALTHY datanodes</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer report --in-service-datanodes
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Get report as JSON</span>
@@ -884,7 +884,7 @@ restart the datanode service for the changes to take effect.</p>
       <tr>
           <td><code>hdds.datanode.disk.balancer.container.states</code></td>
           <td><code>CLOSED,QUASI_CLOSED</code></td>
-          <td>Comma-separated container lifecycle state names that may be moved between disks (must match enum names exactly, uppercase). Default includes <strong>CLOSED</strong> and <strong>QUASI_CLOSED</strong>; extend the list when additional states are needed to be balanced. All defined container states are OPEN, CLOSING, QUASI_CLOSED, CLOSED, UNHEALTHY, INVALID, DELETED, RECOVERING.</td>
+          <td>Comma-separated container lifecycle state names that may be moved between disks (must match enum names exactly, uppercase). Default includes <strong>CLOSED</strong> and <strong>QUASI_CLOSED</strong>; extend the list when additional states are needed to be balanced. All defined container states which are eligibile to move QUASI_CLOSED, CLOSED, UNHEALTHY, INVALID.</td>
       </tr>
       <tr>
           <td><code>hdds.datanode.disk.balancer.container.choosing.policy</code></td>
@@ -922,7 +922,7 @@ restart the datanode service for the changes to take effect.</p>
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.2.0-SNAPSHOT, Last Modified: June 2, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/547ac88e42c19d0efae943e9d6b3f192712e4785">547ac88e42</a>
+      Version: 2.2.0-SNAPSHOT, Last Modified: June 8, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/d35338b6616ae47d8dc800b0319d86c34bed44ed">d35338b661</a>
     </span>
   </div>
 </footer>

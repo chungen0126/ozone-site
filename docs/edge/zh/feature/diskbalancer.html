@@ -558,7 +558,7 @@ s=d.getElementsByTagName('script')[0];
       </tr>
       <tr>
           <td><code>--in-service-datanodes</code></td>
-          <td>它向 SCM 查询所有 IN_SERVICE 数据节点，并在所有这些数据节点上执行该命令。</td>
+          <td>它向 SCM 查询所有 IN_SERVICE 且 HEALTHY 的数据节点，并在所有这些数据节点上执行该命令。</td>
           <td><code>--in-service-datanodes</code></td>
       </tr>
       <tr>
@@ -578,18 +578,18 @@ s=d.getElementsByTagName('script')[0];
       </tr>
       <tr>
           <td><code>-p/--parallel-thread</code></td>
-          <td>并行线程数（默认值：1）。与 <code>start</code> 和 <code>update</code> 命令一起使用。</td>
+          <td>并行线程数（默认值：5）。与 <code>start</code> 和 <code>update</code> 命令一起使用。</td>
           <td><code>-p 5</code><br><code>--parallel-thread 10</code></td>
       </tr>
       <tr>
           <td><code>-s/--stop-after-disk-even</code></td>
-          <td>磁盘平衡完成后自动停止（默认值：false）。与 <code>start</code> 和 <code>update</code> 命令一起使用。</td>
+          <td>磁盘平衡完成后自动停止（默认值：true）。与 <code>start</code> 和 <code>update</code> 命令一起使用。</td>
           <td><code>-s false</code><br><code>--stop-after-disk-even true</code></td>
       </tr>
       <tr>
           <td><code>-c/--container-states</code></td>
           <td>以逗号分隔的容器生命周期状态名称，表示可在磁盘之间移动的状态。配合 <code>start</code> 和 <code>update</code> 命令使用。</td>
-          <td><code>-c CLOSED,QUASI_CLOSED</code><br><code>--container-states OPEN,CLOSED</code></td>
+          <td><code>-c CLOSED,QUASI_CLOSED</code><br><code>--container-states CLOSED</code></td>
       </tr>
   </tbody>
 </table>
@@ -598,7 +598,7 @@ s=d.getElementsByTagName('script')[0];
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在多个数据节点上启动 DiskBalancer</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer start DN-1 DN-2 DN-3
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在所有运行中的数据节点上启动 DiskBalancer</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在所有 IN_SERVICE 且 HEALTHY 的数据节点上启动 DiskBalancer</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer start --in-service-datanodes
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用配置参数启动 DiskBalancer</span>
@@ -613,7 +613,7 @@ s=d.getElementsByTagName('script')[0];
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在多个数据节点上停止 DiskBalancer</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer stop DN-1 DN-2 DN-3
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在所有运行中的数据节点上停止 DiskBalancer</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在所有 IN_SERVICE 且 HEALTHY 的数据节点上停止 DiskBalancer</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer stop --in-service-datanodes
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 停止 DiskBalancer 并输出 JSON 信息</span>
@@ -622,7 +622,7 @@ s=d.getElementsByTagName('script')[0];
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 更新多个参数</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer update DN-1 -t <span style="color:#ae81ff">5</span> -b <span style="color:#ae81ff">50</span> -p <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 更新所有 IN_SERVICE 数据节点</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 更新所有 IN_SERVICE 且 HEALTHY 的数据节点</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer update --in-service-datanodes -t <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 更新并输出 JSON 格式</span>
@@ -631,7 +631,7 @@ s=d.getElementsByTagName('script')[0];
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 从多个数据节点获取状态</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer status DN-1 DN-2 DN-3
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从所有处于服务状态的数据节点获取状态</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从所有 IN_SERVICE 且 HEALTHY 的数据节点获取状态</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer status --in-service-datanodes
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 以 JSON 格式获取状态</span>
@@ -640,7 +640,7 @@ s=d.getElementsByTagName('script')[0];
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 从多个数据节点获取报告</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer report DN-1 DN-2 DN-3
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从所有处于服务状态的数据节点获取报告</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从所有 IN_SERVICE 且 HEALTHY 的数据节点获取报告</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer report --in-service-datanodes
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 以 JSON 格式获取报告</span>
@@ -694,7 +694,7 @@ s=d.getElementsByTagName('script')[0];
       <tr>
           <td><code>hdds.datanode.disk.balancer.container.states</code></td>
           <td><code>CLOSED,QUASI_CLOSED</code></td>
-          <td>以逗号分隔的容器生命周期状态名称列表，指定了允许在不同磁盘之间移动的容器状态（须与枚举名完全一致，使用大写）。默认包含 <strong>CLOSED</strong> 和 <strong>QUASI_CLOSED</strong>；若需对更多状态的容器进行负载均衡，请扩展此列表。所有已定义的容器状态包括：OPEN、CLOSING、QUASI_CLOSED、CLOSED、UNHEALTHY、INVALID、DELETED 和 RECOVERING。</td>
+          <td>以逗号分隔的容器生命周期状态名称列表，指定可在不同磁盘之间移动的容器状态（须与枚举名完全一致，使用大写）。默认包含 <strong>CLOSED</strong> 和 <strong>QUASI_CLOSED</strong>；若需对更多状态的容器进行负载均衡，请扩展此列表。可移动的已定义容器状态包括：QUASI_CLOSED、CLOSED、UNHEALTHY、INVALID。</td>
       </tr>
       <tr>
           <td><code>hdds.datanode.disk.balancer.container.choosing.policy</code></td>
@@ -732,7 +732,7 @@ s=d.getElementsByTagName('script')[0];
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.2.0-SNAPSHOT, Last Modified: June 2, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/547ac88e42c19d0efae943e9d6b3f192712e4785">547ac88e42</a>
+      Version: 2.2.0-SNAPSHOT, Last Modified: June 8, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/d35338b6616ae47d8dc800b0319d86c34bed44ed">d35338b661</a>
     </span>
   </div>
 </footer>
