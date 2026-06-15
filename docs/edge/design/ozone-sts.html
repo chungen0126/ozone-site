@@ -674,7 +674,7 @@ subset of its capabilities.  The restrictions are outlined below:</p>
 <ul>
 <li>The only supported prefix in ResourceArn is <code>arn:aws:s3:::</code> - all others will be rejected.  <strong>Note</strong>: a ResourceArn
 of <code>*</code> is supported as well.</li>
-<li>The only supported Condition operator is <code>StringEquals</code> - all others will be rejected.</li>
+<li>The only supported Condition operators are <code>StringEquals</code> and <code>StringLike</code> - all others will be rejected.</li>
 <li>The only supported Condition key is <code>s3:prefix</code> - all others will be rejected.</li>
 <li>Only one Condition operator per Statement is supported - a Statement with more than one Condition will be rejected.</li>
 <li>The only supported Effect is <code>Allow</code> - all others will be rejected.</li>
@@ -721,9 +721,9 @@ to make S3 API calls</li>
 <li>sessionPolicy - when using the RangerOzoneAuthorizer, if Ranger successfully authorizes the AssumeRole call,
 it will return a String representing the role the token was authorized for.  Furthermore, if an AWS IAM Session Policy
 was included with the AssumeRole request, the String return value will also include resources (i.e. buckets, keys, etc.)
-and permissions (i.e. ACLType) corresponding to the AWS IAM Session Policy.  These resources and permissions, if present,
-would further limit the scope of the permissions and resources granted by the role in Ranger, such that the temporary
-credential will have the permissions comprising the intersection of the role permissions and the sessionPolicy permissions.</li>
+, permissions (i.e. ACLType - for legacy purposes), and actions (i.e. GetObject, GetObjectTagging, etc.) corresponding to the AWS IAM Session Policy.  These resources, permissions and actions, if present,
+would further limit the scope of the permissions, resources and actions granted by the role in Ranger, such that the temporary
+credential will have the permissions and actions comprising the intersection of the role permissions and actions and the sessionPolicy permissions and actions.</li>
 <li>HMAC-SHA256 signature - used to ensure the sessionToken was created by Ozone and was not altered since it was created.</li>
 <li>expiration time of the token (via <code>ShortLivedTokenIdentifier#getExpiry()</code>)</li>
 <li>UUID of the OzoneManager secret key used to sign the sessionToken and encrypt the secretAccessKey (via <code>ShortLivedTokenIdentifier#getSecretKeyId()</code>)</li>
@@ -765,13 +765,20 @@ components:</p>
 <p>The grants parameter is optional, and would only be present if the AssumeRole API call had an IAM session policy JSON
 parameter supplied.  A conversion utility, <code>IamSessionPolicyResolver</code> will process the IAM policy and convert it to a
 <code>Set&lt;AssumeRoleRequest.OzoneGrant&gt;</code>, in effect translating from S3 nomenclature for resources and actions to Ozone nomenclature of
-<code>IOzoneObj</code> and <code>ACLType</code>.  Ranger would use all of this information to determine if the AssumeRole call should be
+<code>IOzoneObj</code>, <code>ACLType</code> and actions without the s3: prefix (such as GetObject or PutObject).  Ranger would use all of this information to determine if the AssumeRole call should be
 successfully authorized, and if so, it will return a String representation of the granted permissions and paths.</p>
 <p>The format of this String is entirely up to the Ranger team.  What is required from the Ozone side is to supply this String to Ranger when any
 subsequent S3 API calls are made that use STS tokens.  In order to achieve this, the sessionPolicy String from Ranger will
 be included in the sessionToken response to the AssumeRole API call (as mentioned above), and Ozone will supply this String
 to Ranger whenever STS tokens are used on S3 API calls via a new <code>RequestContext.sessionPolicy</code> field in the
-<code>IAccessAuthorizer#checkAccess(IOzoneObj, RequestContext)</code> call.</p>
+<code>IAccessAuthorizer#checkAccess(IOzoneObj, RequestContext)</code> call.  Another requirement from the Ozone side is to pass the action (without the s3: prefix) corresponding to the S3 api call into the <code>RequestContext.s3Action</code> field.</p>
+<h3 id="362-additional-context-on-permissions-and-actions">3.6.2 Additional Context on Permissions and Actions</h3>
+<p>In a prior iteration of this design, only permissions corresponding to Ozone <code>ACLType</code> (i.e. read, write, create, read_acl, etc.) were included in Ranger roles and session policies.
+However, after testing against AWS, it was found that ACLs used by Ozone and Ranger are not granular enough. For example, read on volume, read on bucket, and write on key can be used by either the S3 PutObjectTagging api (requiring <code>s3:PutObjectTagging</code> action) or the S3 DeleteObjectTagging api (requiring <code>s3:DeleteObjectTagging</code> action).
+Similarly, because the S3 PutObject api (<code>s3:PutObject</code> action) requires read on volume, read on bucket, and create and write on key, someone with <code>s3:PutObject</code> access could previously also call the S3 PutObjectTagging api, even though they did not have access to the <code>s3:PutObjectTagging</code> action (as an example).
+AWS does not allow an STS token that is restricted for one action to issue calls to an api that is associated with a different action.  To prevent having more access than requested (or different access than requested), ACL permissions can be constrained further by S3 actions.</p>
+<p>To do this constraining, the <code>RequestContext.s3Action</code> field is introduced so that if populated, the RangerOzoneAuthorizer would further restrict the permissions according to the action.
+Additionally, the OzoneGrant would contain a Set<String> representing the S3 actions that are allowed for an inline policy. If all actions are allowed, then the Set<String> would be empty or null.</p>
 <h2 id="37-overall-flow">3.7 Overall Flow</h2>
 <p>The following section outlines the overall flow when using STS in Ozone:</p>
 <ul>
@@ -805,7 +812,7 @@ originalAccessKeyId in the session token and perform the following checks:
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: February 3, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/d3086418e147b22ad1be7827bb37c2501b86181e">d3086418e1</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: June 14, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/e7c5a70723cbad0e3a37a4c0a96ec89703649eba">e7c5a70723</a>
     </span>
   </div>
 </footer>
