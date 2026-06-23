@@ -655,6 +655,24 @@ s=d.getElementsByTagName('script')[0];
 <p>When keys are changed or deleted in the live bucket, their data blocks are retained if a snapshot references them. Deleting a snapshot makes its exclusively referenced blocks reclaimable by background cleanup processes.</p>
 <p><strong>SnapshotDiff Implementation:</strong> Differences are computed using RocksDB key comparisons and a compaction DAG for recent changes (default: 30 days). For older snapshots or if DAG data is compacted, a full metadata scan is used. Diff results (<code>+</code> add, <code>-</code> delete, <code>M</code> modify, <code>R</code> rename) are cached.</p>
 <p><strong>Snapshot Data Storage:</strong> Snapshot metadata resides in OM&rsquo;s RocksDB. Diff job data is stored in <code>ozone.om.snapshot.diff.db.dir</code> (defaults to OM metadata directory).</p>
+<h3 id="snapshot-space--size-tracking">Snapshot Space &amp; Size Tracking</h3>
+<p>When a snapshot is created, it references the state of the bucket at that point in time. Over time, as keys are deleted or overwritten in the active namespace, the data blocks are kept alive by the snapshots. Ozone tracks space usage for snapshots using the following metrics:</p>
+<h4 id="referenced-size">Referenced Size</h4>
+<ul>
+<li><strong><code>referencedSize</code></strong>: The total logical data size (in bytes, unreplicated) of all active keys/files in the bucket at the moment the snapshot was created.</li>
+<li><strong><code>referencedReplicatedSize</code></strong>: The total replicated data size (in bytes, replicated) referenced by the snapshot at its creation point.</li>
+</ul>
+<h4 id="exclusive-size">Exclusive Size</h4>
+<p>As mutations occur in the active bucket or other snapshots, some blocks become exclusively held by a single snapshot. Ozone tracks this exclusive size using two separate asynchronous background services:</p>
+<ol>
+<li><strong><code>KeyDeletingService</code> (Key Deep Cleaning)</strong>: Processes deleted keys to find blocks exclusively held by the snapshot. It sets <code>exclusiveSize</code> (unreplicated) and <code>exclusiveReplicatedSize</code> (replicated).</li>
+<li><strong><code>SnapshotDirectoryCleaningService</code> (Directory Deep Cleaning)</strong>: Recursively processes deleted directories. To avoid write conflicts and overwriting between these two independent services, it stores its results separately in <code>exclusiveSizeDeltaFromDirDeepCleaning</code> (unreplicated) and <code>exclusiveReplicatedSizeDeltaFromDirDeepCleaning</code> (replicated).</li>
+</ol>
+<p>The actual total exclusive size of a snapshot is the sum of these fields:</p>
+<ul>
+<li><strong>Total Exclusive Size</strong>: <code>exclusiveSize</code> + <code>exclusiveSizeDeltaFromDirDeepCleaning</code></li>
+<li><strong>Total Exclusive Replicated Size</strong>: <code>exclusiveReplicatedSize</code> + <code>exclusiveReplicatedSizeDeltaFromDirDeepCleaning</code></li>
+</ul>
 <p>For more details, see Prashant Pogde’s <a href="https://medium.com/@prashantpogde/introducing-apache-ozone-snapshots-af82e976142f">Introducing Apache Ozone Snapshots</a>.</p>
 <h2 id="user-tutorial">User Tutorial</h2>
 <p>This guide shows how to use Ozone snapshots via CLI and Java.</p>
@@ -825,7 +843,7 @@ Refer to the <a href="https://ozone.apache.org/docs/edge/interface/ofs.html">Ozo
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: April 30, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/39aeb20f072a959e99559ad42de834bfa1e26e83">39aeb20f07</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: June 22, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/880bb67d5cb6997b1a90d3c0e5137f3bc8eb41d1">880bb67d5c</a>
     </span>
   </div>
 </footer>
