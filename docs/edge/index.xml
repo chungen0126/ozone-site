@@ -596,6 +596,13 @@
       <description>Understanding the fundamental data hierarchy in Apache Ozone: Volumes, Buckets, and Keys.</description>
     </item>
     <item>
+      <title>Snapshot Diff Optimization</title>
+      <link>/design/efficient-snapdiff.html</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
+      <guid>/design/efficient-snapdiff.html</guid>
+      <description>Describe proposal for an optimized snapshot diff that uses mostly sequential reads and batch puts</description>
+    </item>
+    <item>
       <title>Full Volume Handling</title>
       <link>/design/full-volume-handling.html</link>
       <pubDate>Mon, 12 May 2025 00:00:00 +0000</pubDate>

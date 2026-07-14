@@ -6,7 +6,7 @@
     <description>Recent content in Designs on Ozone</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 14 Jun 2026 22:46:25 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 10:52:28 -0700</lastBuildDate>
     <atom:link href="/design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Multipart Upload GC Pressure Optimizations</title>
@@ -63,6 +63,13 @@
       <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
       <guid>/design/diskbalancer.html</guid>
       <description>DiskBalancer is a feature to evenly distribute data across all disks within a Datanode for even disk utilisation.</description>
+    </item>
+    <item>
+      <title>Snapshot Diff Optimization</title>
+      <link>/design/efficient-snapdiff.html</link>
+      <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
+      <guid>/design/efficient-snapdiff.html</guid>
+      <description>Describe proposal for an optimized snapshot diff that uses mostly sequential reads and batch puts</description>
     </item>
     <item>
       <title>Full Volume Handling</title>
