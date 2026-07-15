@@ -776,7 +776,7 @@ Argument <code>--prefix</code> could be root (<code>/</code>), path to a bucket 
 <h2 id="snapshot-defragmentation-trigger">Snapshot Defragmentation Trigger</h2>
 <p>The snapshot defrag command triggers the Snapshot Defragmentation Service to run immediately on a specific Ozone Manager node.
 This command manually initiates the snapshot defragmentation process which compacts snapshot data and removes fragmentation to improve storage efficiency.</p>
-<p>This command only works on Ozone Manager HA clusters.</p>
+<p>This command only works on Ozone Manager HA clusters. Specify <code>--node-id</code> to select which OM to defragment.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ ozone admin om snapshot defrag --help
 </span></span><span style="display:flex;"><span>Usage: ozone admin om snapshot defrag <span style="color:#f92672">[</span>-hV<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--no-wait<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--verbose<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>                                      <span style="color:#f92672">[</span>--node-id<span style="color:#f92672">=</span>&lt;nodeId&gt;<span style="color:#f92672">]</span>
@@ -790,7 +790,7 @@ This command manually initiates the snapshot defragmentation process which compa
 </span></span><span style="display:flex;"><span>                             complete. The command will <span style="color:#66d9ef">return</span> immediately
 </span></span><span style="display:flex;"><span>                             after triggering the task.
 </span></span><span style="display:flex;"><span>      --node-id<span style="color:#f92672">=</span>&lt;nodeId&gt;   NodeID of the OM to trigger snapshot defragmentation
-</span></span><span style="display:flex;"><span>                             on.
+</span></span><span style="display:flex;"><span>                             on. Required when OM HA is configured.
 </span></span><span style="display:flex;"><span>      --service-id, --om-service-id<span style="color:#f92672">=</span>&lt;serviceID&gt;
 </span></span><span style="display:flex;"><span>                           Ozone Manager Service ID.
 </span></span><span style="display:flex;"><span>  -V, --version            Print version information and exit.
@@ -828,7 +828,7 @@ This command manually initiates the snapshot defragmentation process which compa
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: November 17, 2025 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/cbad1202d09a6953ec19ee31c5db138affea3eb9">cbad1202d0</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 15, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/e0bdbc2e3f9dd198dc54ec917815debff825c88b">e0bdbc2e3f</a>
     </span>
   </div>
 </footer>

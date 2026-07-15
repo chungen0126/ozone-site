@@ -774,7 +774,7 @@ This updates the highest transaction index in the OM transaction info table. The
 </span></span><span style="display:flex;"><span>                  Ozone Manager Service ID
 </span></span></code></pre></div><h3 id="compact-1">compact</h3>
 <p>Compact a column family in the OM DB to clean up tombstones. The compaction happens asynchronously. Requires admin privileges.
-OM should be running for this tool.</p>
+OM should be running for this tool. On an HA OM cluster, specify <code>--node-id</code> to select which OM&rsquo;s db to compact.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Usage: ozone repair om compact <span style="color:#f92672">[</span>-hV<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--dry-run<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--force<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--verbose<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>                               --cf<span style="color:#f92672">=</span>&lt;columnFamilyName&gt; <span style="color:#f92672">[</span>--node-id<span style="color:#f92672">=</span>&lt;nodeId&gt;<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>                               <span style="color:#f92672">[</span>--service-id<span style="color:#f92672">=</span>&lt;omServiceId&gt;<span style="color:#f92672">]</span>
@@ -783,6 +783,7 @@ OM should be running for this tool.</p>
 </span></span><span style="display:flex;"><span>      --cf, --column-family<span style="color:#f92672">=</span>&lt;columnFamilyName&gt;
 </span></span><span style="display:flex;"><span>                           Column family name
 </span></span><span style="display:flex;"><span>      --node-id<span style="color:#f92672">=</span>&lt;nodeId&gt;   NodeID of the OM <span style="color:#66d9ef">for</span> which db needs to be compacted.
+</span></span><span style="display:flex;"><span>                           Required when OM HA is configured.
 </span></span><span style="display:flex;"><span>      --service-id, --om-service-id<span style="color:#f92672">=</span>&lt;omServiceId&gt;
 </span></span><span style="display:flex;"><span>                           Ozone Manager Service ID
 </span></span></code></pre></div><h3 id="skip-ratis-transaction-srt">skip-ratis-transaction, srt</h3>
@@ -859,7 +860,7 @@ This updates the highest transaction index in the SCM transaction info table. Th
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: June 24, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/8e60597eacc4fe328b8ae0b25e21bd00f834c0ef">8e60597eac</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 15, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/e0bdbc2e3f9dd198dc54ec917815debff825c88b">e0bdbc2e3f</a>
     </span>
   </div>
 </footer>
