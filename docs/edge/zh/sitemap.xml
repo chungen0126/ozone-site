@@ -275,19 +275,6 @@
                 href="/zh/concept/storagecontainermanager.html"
                 />
   </url><url>
-    <loc>/zh/interface/csi.html</loc>
-    <lastmod>2021-10-07T11:02:57-07:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/interface/csi.html"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/zh/interface/csi.html"
-                />
-  </url><url>
     <loc>/zh/interface/s3.html</loc>
     <lastmod>2024-12-04T15:41:48-05:00</lastmod>
     <xhtml:link

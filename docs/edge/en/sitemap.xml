@@ -473,19 +473,6 @@
                 href="/tools/debug/auditparser.html"
                 />
   </url><url>
-    <loc>/interface/csi.html</loc>
-    <lastmod>2024-12-04T15:41:48-05:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="/zh/interface/csi.html"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/interface/csi.html"
-                />
-  </url><url>
     <loc>/start/productiondeployment.html</loc>
     <lastmod>2026-01-03T05:35:48-08:00</lastmod>
     <xhtml:link

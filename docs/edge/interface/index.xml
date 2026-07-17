@@ -64,13 +64,6 @@
       <description>Access Apache Ozone from Python using PyArrow, Boto3, requests and fsspec WebHDFS libraries</description>
     </item>
     <item>
-      <title>CSI Protocol</title>
-      <link>/interface/csi.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/interface/csi.html</guid>
-      <description>Ozone supports Container Storage Interface(CSI) protocol. You can use Ozone by mounting an Ozone volume by Ozone CSI.</description>
-    </item>
-    <item>
       <title>HttpFS Gateway</title>
       <link>/interface/httpfs.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

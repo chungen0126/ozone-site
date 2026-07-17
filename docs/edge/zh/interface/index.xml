@@ -29,13 +29,6 @@
       <description>Hadoop 文件系统兼容使得任何使用类 HDFS 接口的应用无需任何修改就可以在 Ozone 上工作，比如基于 Apache Spark、YARN 和 Hive 等框架的应用。</description>
     </item>
     <item>
-      <title>CSI 协议</title>
-      <link>/zh/interface/csi.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/zh/interface/csi.html</guid>
-      <description>Ozone 支持 容器存储接口 (CSI) 协议。你可以通过 Ozone CSI 挂载 Ozone 桶的方式使用 Ozone。</description>
-    </item>
-    <item>
       <title>S3 协议接口</title>
       <link>/zh/interface/s3.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

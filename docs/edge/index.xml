@@ -302,13 +302,6 @@
       <description>Tool for querying the ozone audit logs.</description>
     </item>
     <item>
-      <title>CSI Protocol</title>
-      <link>/interface/csi.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>/interface/csi.html</guid>
-      <description>Ozone supports Container Storage Interface(CSI) protocol. You can use Ozone by mounting an Ozone volume by Ozone CSI.</description>
-    </item>
-    <item>
       <title>Production Deployment</title>
       <link>/start/productiondeployment.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
