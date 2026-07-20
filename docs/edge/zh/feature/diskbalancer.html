@@ -526,15 +526,15 @@ s=d.getElementsByTagName('script')[0];
 可禁用数据节点上的服务并阻止 CLI 命令运行。</p>
 <h3 id="命令语法">命令语法</h3>
 <p><strong>启动 DiskBalancer：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer start <span style="color:#f92672">[</span>&lt;datanode-address&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer start <span style="color:#f92672">[</span>&lt;datanode-address or -id&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span>
 </span></span></code></pre></div><p><strong>停止 DiskBalancer：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer stop <span style="color:#f92672">[</span>&lt;datanode-address&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer stop <span style="color:#f92672">[</span>&lt;datanode-address or -id&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span>
 </span></span></code></pre></div><p><strong>更新配置：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer update <span style="color:#f92672">[</span>&lt;datanode-address&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer update <span style="color:#f92672">[</span>&lt;datanode-address or -id&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>OPTIONS<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span>
 </span></span></code></pre></div><p><strong>获取状态：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer status <span style="color:#f92672">[</span>&lt;datanode-address&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--json<span style="color:#f92672">]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer status <span style="color:#f92672">[</span>&lt;datanode-address or -id&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--json<span style="color:#f92672">]</span>
 </span></span></code></pre></div><p><strong>获取报告：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer report <span style="color:#f92672">[</span>&lt;datanode-address&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--json<span style="color:#f92672">]</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin datanode diskbalancer report <span style="color:#f92672">[</span>&lt;datanode-address or -id&gt; ...<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--in-service-datanodes<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--json<span style="color:#f92672">]</span>
 </span></span></code></pre></div><h3 id="命令选项">命令选项</h3>
 <table>
   <thead>
@@ -547,8 +547,13 @@ s=d.getElementsByTagName('script')[0];
   <tbody>
       <tr>
           <td><code>&lt;datanode-address&gt;</code></td>
-          <td>一个或多个数据节点地址作为位置参数。地址可以是：<br>- 主机名（例如，<code>DN-1</code>）- 使用默认的 CLIENT_RPC 端口 (19864)<br>- 带端口的主机名（例如，<code>DN-1:19864</code>）<br>- IP 地址（例如，<code>192.168.1.10</code>）<br>- 带端口的 IP 地址（例如，<code>192.168.1.10:19864</code>）<br>- 标准输入 (<code>-</code>) - 从标准输入读取数据节点地址，每行一个</td>
+          <td>一个或多个数据节点地址作为位置参数。每个可以是：<br>- 主机名（例如 <code>DN-1</code>）- 使用默认 CLIENT_RPC 端口 (19864)<br>- 带端口的主机名（例如 <code>DN-1:19864</code>）<br>- IP 地址（例如 <code>192.168.1.10</code>）<br>- 带端口的 IP 地址（例如 <code>192.168.1.10:19864</code>）<br>- 标准输入 (<code>-</code>) - 从标准输入读取地址，每行一个</td>
           <td><code>DN-1</code><br><code>DN-1:19864</code><br><code>192.168.1.10</code><br><code>-</code></td>
+      </tr>
+      <tr>
+          <td><code>--node-id</code></td>
+          <td>数据节点 UUID。需要通过 SCM 解析为 CLIENT_RPC 地址。</td>
+          <td><code>--node-id a3b63511-bdf8-4fa1-8ab6-d19c0e806f84</code></td>
       </tr>
       <tr>
           <td><code>--in-service-datanodes</code></td>
@@ -591,6 +596,9 @@ s=d.getElementsByTagName('script')[0];
 <p><strong>启动 DiskBalancer：</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在多个数据节点上启动 DiskBalancer</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer start DN-1 DN-2 DN-3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用数据节点 UUID 启动 DiskBalancer</span>
+</span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer start --node-id a3b63511-bdf8-4fa1-8ab6-d19c0e806f84
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 在所有 IN_SERVICE 且 HEALTHY 的数据节点上启动 DiskBalancer</span>
 </span></span><span style="display:flex;"><span>ozone admin datanode diskbalancer start --in-service-datanodes
@@ -726,7 +734,7 @@ s=d.getElementsByTagName('script')[0];
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: June 8, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/d35338b6616ae47d8dc800b0319d86c34bed44ed">d35338b661</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 20, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/66447d3663a73f4bc80e335d67c6679e6b3b4ecf">66447d3663</a>
     </span>
   </div>
 </footer>

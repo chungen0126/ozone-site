@@ -660,6 +660,7 @@ utilised disk to the least utilised disk. DiskBalancer can be triggered manually
 </li>
 <li>Each datanode performs its own <strong>authentication</strong> (via RPC) and <strong>authorization</strong> checks (using <code>OzoneAdmins</code> based on <code>ozone.administrators</code> configuration).</li>
 <li>For batch operations, clients can use the <code>--in-service-datanodes</code> flag to automatically query SCM for all IN_SERVICE and HEALTHY datanodes and execute commands on all of them.</li>
+<li>When <code>--node-id</code> is used, the CLI resolves the datanode UUID to the CLIENT_RPC address through SCM before issuing the datanode RPC.</li>
 </ul>
 <p><strong>DN - DiskBalancer Service:</strong></p>
 <p>All balance operations are done in dataNodes.</p>
@@ -670,8 +671,10 @@ utilised disk to the least utilised disk. DiskBalancer can be triggered manually
 from the most over-utilized disk (source) to the least utilized disk (destination).</li>
 <li>The scheduler dispatches these move tasks to a pool of <strong>Worker</strong> threads for parallel execution.</li>
 </ol>
-<p><strong>Note:</strong> SCM is used <strong>only</strong> for datanode discovery when using the <code>--in-service-datanodes</code> flag. SCM provides a list of IN_SERVICE and HEALTHY datanodes for batch operations but
-does <strong>not</strong> participate in DiskBalancer control operations (start/stop/update/status/report). All DiskBalancer operations are performed directly between client and datanode.</p>
+<p><strong>Note:</strong> SCM is used for datanode discovery when using the <code>--in-service-datanodes</code> flag and to resolve
+<code>--node-id</code> UUIDs to CLIENT_RPC addresses. SCM provides a list of IN_SERVICE and HEALTHY datanodes for
+batch operations and node metadata for UUID lookup, but does <strong>not</strong> participate in DiskBalancer control operations
+(start/stop/update/status/report). All DiskBalancer operations are performed directly between client and datanode.</p>
 <h2 id="container-move-process">Container Move Process</h2>
 <p>Suppose, we are moving container C1 <strong>(CLOSED state)</strong> from Source Disk d1 to Destination disk d2 :</p>
 <ol>
@@ -741,10 +744,11 @@ that is movable (per <code>hdds.datanode.disk.balancer.container.states</code>, 
 </ol>
 <p>The CLI supports:</p>
 <ul>
-<li><strong>Direct datanode addressing</strong>: Commands can target specific datanodes by hostname or IP address</li>
+<li><strong>Direct datanode addressing</strong>: Commands can target specific datanodes by hostname or IP address as positional arguments</li>
+<li><strong>UUID targeting</strong>: <code>--node-id</code> resolves datanode UUIDs to CLIENT_RPC addresses through SCM; resolution failures are reported per node</li>
 <li><strong>Batch operations</strong>: The <code>--in-service-datanodes</code> flag queries SCM for all IN_SERVICE and HEALTHY datanodes and executes commands on all of them</li>
 <li><strong>Flexible input</strong>: Datanode addresses can be provided as positional arguments or read from stdin</li>
-<li><strong>Output formats</strong>: Results can be displayed in human-readable format or JSON for programmatic access</li>
+<li><strong>Output formats</strong>: Results can be displayed in human-readable format or JSON for programmatic access; hostname targets show <code>hostname (ip:port)</code>, <code>--node-id</code> targets show the UUID</li>
 </ul>
 <h3 id="operational-state-awareness">Operational State Awareness</h3>
 <p>DiskBalancer automatically responds to datanode operational state changes:</p>
@@ -813,7 +817,7 @@ into the balancer&rsquo;s activity, progress, and overall health.</p>
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: June 10, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/8d0fc9cc687244b2af1cd65bfb1cb03962ed6db1">8d0fc9cc68</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 20, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/66447d3663a73f4bc80e335d67c6679e6b3b4ecf">66447d3663</a>
     </span>
   </div>
 </footer>
