@@ -1,0 +1,1161 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="Apache Ozone Documentation">
+
+    <title>Documentation for Apache Ozone</title>
+
+    
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="../css/ozonedoc.css" rel="stylesheet">
+
+    
+    
+    <link href="../swagger-resources/swagger-ui.css" rel="stylesheet">
+
+    
+    <script>
+      var _paq = window._paq = window._paq || [];
+      
+
+       
+      _paq.push(['disableCookies']);
+      
+
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//analytics.apache.org/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '34']);
+        var d=document, g=d.createElement('script'),
+s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    
+
+  </head>
+
+
+<body>
+
+  
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="../index.html" class="navbar-left ozone-logo">
+        <img src="../ozone-logo-small.png"/>
+      </a>
+      <a class="navbar-brand hidden-xs" href="../index.html">
+        Apache Ozone/HDDS Documentation
+      </a>
+      <a class="navbar-brand visible-xs-inline" href="#">Apache Ozone</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/apache/ozone">Source</a></li>
+        <li><a href="https://ozone.apache.org">Apache Ozone</a></li>
+        <li><a href="https://apache.org">ASF</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <div class="wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      
+<div class="col-sm-2 col-md-2 sidebar" id="sidebar">
+  <ul class="nav nav-sidebar">
+    
+    
+        
+            <li class="">
+                
+                   <a href="../index.html">
+                
+
+                    
+                    <span>An Introduction to Apache Ozone</span>
+                </a>
+            </li>
+        
+    
+        
+            <li class="">
+                <a href="../start/index.html">
+                    
+                    <span>Getting Started</span>
+                </a>
+                <ul class="nav">
+                    
+                        <li class="">
+                           
+                           <a href="../start/productiondeployment.html">Production Deployment</a>
+                           
+                        </li>
+                    
+                </ul>
+            </li>
+        
+    
+        
+            <li class="">
+                <a href="../concept/index.html">
+                    
+                    <span>Architecture</span>
+                </a>
+                <ul class="nav">
+                    
+                        <li class="">
+                           
+                           <a href="../concept/overview.html">Overview</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                               <a href="../concept/ozonemanager.html">
+                                 
+                                 <span>Ozone Manager</span>
+                               </a>
+                               <ul class="nav">
+                               
+                                  <li class="">
+                                     <a href="../concept/volumesbucketskeys.html">Volumes, Buckets, and Keys</a>
+                                  </li>
+                               
+                               </ul>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../concept/storagecontainermanager.html">Storage Container Manager</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../concept/containers.html">Containers</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../concept/datanodes.html">Datanodes</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                               <a href="../concept/ozones3gateway.html">
+                                 
+                                 <span>Ozone S3 Gateway</span>
+                               </a>
+                               <ul class="nav">
+                               
+                                  <li class="">
+                                     <a href="../concept/s3-gateway-load-balancing.html">S3 Gateway Load Balancing</a>
+                                  </li>
+                               
+                               </ul>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../concept/recon.html">Recon</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../concept/networkports.html">Network Ports</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../concept/comparison.html">Comparison with Other Storage Technologies</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../concept/rocksdb.html">RocksDB in Apache Ozone</a>
+                           
+                        </li>
+                    
+                </ul>
+            </li>
+        
+    
+        
+            <li class="">
+                <a href="../feature/index.html">
+                    
+                    <span>Features</span>
+                </a>
+                <ul class="nav">
+                    
+                        <li class="">
+                           
+                           <a href="../feature/decommission.html">Decommissioning</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/diskbalancer.html">DiskBalancer</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/snapshotdefragmentation.html">Improve Ozone Snapshot Scale with Snapshot Defragmentation</a>
+                           
+                        </li>
+                    
+                        <li class="active">
+                           
+                           <a href="../feature/lifecycle.html">Object Lifecycle Management</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/om-ha.html">OM High Availability</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/erasurecoding.html">Ozone Erasure Coding</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                               <a href="../feature/snapshot.html">
+                                 
+                                 <span>Ozone Snapshot</span>
+                               </a>
+                               <ul class="nav">
+                               
+                                  <li class="">
+                                     <a href="../feature/snapshot-configuration-properties.html">Snapshot Configuration Properties</a>
+                                  </li>
+                               
+                               </ul>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/scm-ha.html">SCM High Availability</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/streaming-write-pipeline.html">Streaming Write Pipeline</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/dn-merge-rocksdb.html">Merge Container RocksDB in DN</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/prefixfso.html">Prefix based File System Optimization</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/topology.html">Topology awareness</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/quota.html">Quota in Ozone</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/recon.html">Recon Server</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/observability.html">Observability</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/nonrolling-upgrade.html">Non-Rolling Upgrades and Downgrades</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                               <a href="../feature/s3-multi-tenancy.html">
+                                 
+                                 <span>S3 Multi-Tenancy</span>
+                               </a>
+                               <ul class="nav">
+                               
+                                  <li class="">
+                                     <a href="../feature/s3-multi-tenancy-setup.html">Setup</a>
+                                  </li>
+                               
+                                  <li class="">
+                                     <a href="../feature/s3-tenant-commands.html">Tenant commands</a>
+                                  </li>
+                               
+                                  <li class="">
+                                     <a href="../feature/s3-multi-tenancy-access-control.html">Access Control</a>
+                                  </li>
+                               
+                               </ul>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/reconfigurability.html">Dynamic Property Reload</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/containerbalancer.html">Container Balancer</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/maintenance.html">Maintenance Mode</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/multi-raft-support.html">Multi-Raft Support in Ozone</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../feature/trash.html">Trash</a>
+                           
+                        </li>
+                    
+                </ul>
+            </li>
+        
+    
+        
+            <li class="">
+                <a href="../integration/index.html">
+                    
+                    <span>Application Integrations</span>
+                </a>
+                <ul class="nav">
+                    
+                        <li class="">
+                           
+                           <a href="../integration/distcp.html">Hadoop DistCp</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../integration/hive.html">Hive</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../integration/impala.html">Impala</a>
+                           
+                        </li>
+                    
+                </ul>
+            </li>
+        
+    
+        
+            <li class="">
+                <a href="../interface/index.html">
+                    
+                    <span>Client Interfaces</span>
+                </a>
+                <ul class="nav">
+                    
+                        <li class="">
+                           
+                           <a href="../interface/ofs.html">Ofs (Hadoop compatible)</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../interface/o3fs.html">O3fs (Hadoop compatible)</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                               <a href="../interface/s3.html">
+                                 
+                                 <span>S3 Protocol</span>
+                               </a>
+                               <ul class="nav">
+                               
+                                  <li class="">
+                                     <a href="../interface/cyberduckozones3.html">Accessing Ozone S3 via CyberDuck</a>
+                                  </li>
+                               
+                               </ul>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../interface/cli.html">Command Line Interface</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../interface/reconapi.html">Recon API</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../interface/javaapi.html">Java API</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../interface/python.html">Accessing Apache Ozone from Python</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../interface/httpfs.html">HttpFS Gateway</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../interface/native-cpp.html">Native C/C&#43;&#43; Client Access to Ozone</a>
+                           
+                        </li>
+                    
+                </ul>
+            </li>
+        
+    
+        
+            <li class="">
+                <a href="../security/index.html">
+                    
+                    <span>Security</span>
+                </a>
+                <ul class="nav">
+                    
+                        <li class="">
+                           
+                           <a href="../security/secureozone.html">Securing Ozone</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../security/securingtde.html">Transparent Data Encryption</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../security/gdpr.html">GDPR in Ozone</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../security/securingdatanodes.html">Securing Datanodes</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../security/securingozonehttp.html">Securing HTTP</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../security/securings3.html">Securing S3</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../security/securityacls.html">Ozone ACLs</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../security/protect-in-transit-traffic.html">Protect In-Transit Traffic</a>
+                           
+                        </li>
+                    
+                        <li class="">
+                           
+                           <a href="../security/securitywithranger.html">Apache Ranger</a>
+                           
+                        </li>
+                    
+                </ul>
+            </li>
+        
+    
+        
+            <li class="">
+                
+                   <a href="../tools/index.html">
+                
+
+                    
+                    <span>Tools</span>
+                </a>
+            </li>
+        
+    
+        
+            <li class="">
+                
+                   <a href="../recipe/index.html">
+                
+
+                    
+                    <span>Recipes</span>
+                </a>
+            </li>
+        
+    
+        
+            <li class="">
+                
+                   <a href="../troubleshooting/index.html">
+                
+
+                    
+                    <span>Troubleshooting</span>
+                </a>
+            </li>
+        
+    
+    <li><a href="../design.html"><span><b>Design docs</b></span></a></li>
+    <li class="visible-xs"><a href="#">References</a>
+    <ul class="nav">
+        <li><a href="https://github.com/apache/ozone"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Source</a></li>
+        <li><a href="https://ozone.apache.org"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Apache Ozone</a></li>
+        <li><a href="https://apache.org"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> ASF</a></li>
+    </ul></li>
+  </ul>
+
+</div>
+
+      <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main-content">
+
+
+
+        <div class="col-md-9">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                  <li class="breadcrumb-item" aria-current="page"><a href="../feature/index.html">Features</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Object Lifecycle Management</li>
+                </ol>
+              </nav>
+
+          
+
+<div class="pull-right">
+    
+    
+    
+    
+    
+    <a href="../zh/feature/lifecycle.html"><span class="label label-success">中文</span></a>
+    
+    
+</div>
+
+
+          <div class="col-md-9">
+            <h1>Object Lifecycle Management</h1>
+
+            <!---
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<h2 id="background">Background</h2>
+<p>In object storage scenarios, large amounts of data become obsolete over time and no longer need to be accessed or retained. Manually cleaning up expired data is both time-consuming and error-prone. Object lifecycle management provides an automated approach that allows administrators to configure policies at the bucket level so the system can automatically handle the cleanup of expired objects.</p>
+<p>Ozone&rsquo;s object lifecycle management is designed after <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html">AWS S3 Lifecycle Configuration</a> and provides compatible API interfaces through the S3 Gateway. The current version implements the Expiration action, which automatically deletes or moves objects to trash based on the object&rsquo;s last modification time.</p>
+<h2 id="compatibility-with-aws-s3-lifecycle">Compatibility with AWS S3 Lifecycle</h2>
+<p>Ozone&rsquo;s lifecycle management is designed with AWS S3 Lifecycle as a reference. The current version does not implement all S3 Lifecycle features. Below is a detailed compatibility comparison.</p>
+<h3 id="api-compatibility">API Compatibility</h3>
+<table>
+  <thead>
+      <tr>
+          <th>S3 API</th>
+          <th>Supported</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>PutBucketLifecycleConfiguration</code></td>
+          <td>Yes</td>
+          <td>Set via S3 Gateway <code>PUT /{bucket}?lifecycle</code></td>
+      </tr>
+      <tr>
+          <td><code>GetBucketLifecycleConfiguration</code></td>
+          <td>Yes</td>
+          <td>Get via S3 Gateway <code>GET /{bucket}?lifecycle</code></td>
+      </tr>
+      <tr>
+          <td><code>DeleteBucketLifecycle</code></td>
+          <td>Yes</td>
+          <td>Delete via S3 Gateway <code>DELETE /{bucket}?lifecycle</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="lifecycle-actions">Lifecycle Actions</h3>
+<table>
+  <thead>
+      <tr>
+          <th>S3 Lifecycle Action</th>
+          <th>Supported</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Expiration</td>
+          <td>Yes</td>
+          <td>Supports both <code>Days</code> and <code>Date</code> modes</td>
+      </tr>
+      <tr>
+          <td>Transition</td>
+          <td>No</td>
+          <td>Ozone does not currently support tiered storage class transitions similar to S3</td>
+      </tr>
+      <tr>
+          <td>NoncurrentVersionExpiration</td>
+          <td>No</td>
+          <td>Ozone&rsquo;s bucket versioning mechanism differs from S3</td>
+      </tr>
+      <tr>
+          <td>NoncurrentVersionTransition</td>
+          <td>No</td>
+          <td>Same as above</td>
+      </tr>
+      <tr>
+          <td>AbortIncompleteMultipartUpload [1]</td>
+          <td>No</td>
+          <td>Automatic cleanup of incomplete multipart uploads is not implemented</td>
+      </tr>
+      <tr>
+          <td>ExpiredObjectDeleteMarker</td>
+          <td>No</td>
+          <td>Ozone does not use S3-style delete markers</td>
+      </tr>
+  </tbody>
+</table>
+<p>[1] Ozone has a separate cleanup service for incomplete multipart uploads (MultipartUploadCleanupService)</p>
+<h3 id="filter-conditions">Filter Conditions</h3>
+<table>
+  <thead>
+      <tr>
+          <th>S3 Filter Element</th>
+          <th>Supported</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Prefix</td>
+          <td>Yes</td>
+          <td>Supports both top-level Prefix and Prefix within Filter</td>
+      </tr>
+      <tr>
+          <td>Tag</td>
+          <td>Yes</td>
+          <td>Supports filtering by a single tag</td>
+      </tr>
+      <tr>
+          <td>And (Prefix + Tags)</td>
+          <td>Yes</td>
+          <td>Supports combining Prefix with multiple Tag conditions</td>
+      </tr>
+      <tr>
+          <td>ObjectSizeGreaterThan</td>
+          <td>No</td>
+          <td>Filtering by minimum object size is not supported</td>
+      </tr>
+      <tr>
+          <td>ObjectSizeLessThan</td>
+          <td>No</td>
+          <td>Filtering by maximum object size is not supported</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="other-differences">Other Differences</h3>
+<ul>
+<li>Ozone-specific feature: Ozone supports moving expired objects to trash (<code>.Trash</code>) instead of deleting them directly.</li>
+<li>Bucket Layout: Ozone&rsquo;s FSO (FILE_SYSTEM_OPTIMIZED) buckets support recursive directory-tree-based evaluation and can automatically expire empty directories.</li>
+<li>Administrative operations: Ozone provides <code>suspend</code> / <code>resume</code> commands to dynamically control the lifecycle service (S3 achieves similar effects through disabling rule <code>Status</code>, which Ozone also supports), allowing you to stop all lifecycle processing directly.</li>
+</ul>
+<h2 id="lifecycle-configuration">Lifecycle Configuration</h2>
+<p>The overall configuration rules of Ozone lifecycle are essentially the same as AWS S3 Lifecycle semantics. Refer to AWS S3 Lifecycle documentation for more details on the rules.</p>
+<h3 id="overall-structure">Overall Structure</h3>
+<p>A Lifecycle Configuration is bound to a bucket. Each bucket can have at most one lifecycle configuration, and each configuration can contain up to 1000 rules.</p>
+<p>Each rule contains the following elements:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Element</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ID</td>
+          <td>Unique identifier for the rule, up to 255 characters. Auto-generated if not specified.</td>
+      </tr>
+      <tr>
+          <td>Status</td>
+          <td><code>Enabled</code> or <code>Disabled</code>. Only enabled rules are executed.</td>
+      </tr>
+      <tr>
+          <td>Filter / Prefix</td>
+          <td>Specifies the scope of the rule. Can filter by object name prefix.</td>
+      </tr>
+      <tr>
+          <td>Expiration</td>
+          <td>Expiration action. Specifies when objects expire via <code>Days</code> or <code>Date</code>.</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="expiration-action">Expiration Action</h3>
+<p>The expiration action supports two modes:</p>
+<ul>
+<li>Days: Objects expire after the specified number of days since the last modification time. Must be a positive integer and cannot be 0.</li>
+<li>Date: Specifies a UTC point in time. All objects last modified before that time are considered expired.</li>
+</ul>
+<p>Each rule can specify at most one Expiration action. <code>Days</code> and <code>Date</code> are mutually exclusive.</p>
+<p>Expiration validation rules:</p>
+<ul>
+<li>Exactly one of <code>Days</code> or <code>Date</code> must be specified. They cannot be specified together, nor can both be omitted.</li>
+<li><code>Days</code> must be a positive integer greater than zero.</li>
+<li><code>Date</code> must conform to ISO 8601 format and must include both the time and timezone components (they cannot be omitted). Valid examples: <code>2042-04-02T00:00:00Z</code>, <code>2042-04-02T00:00:00+00:00</code>.</li>
+<li><code>Date</code> must resolve to midnight UTC (<code>00:00:00</code>) after timezone conversion. Non-zero hours, minutes, or seconds are not allowed.</li>
+<li><code>Date</code> must be a future time relative to when the lifecycle configuration is created. Past dates are not accepted.</li>
+</ul>
+<h3 id="filter-and-prefix">Filter and Prefix</h3>
+<p>Rules can specify their scope in the following ways:</p>
+<ul>
+<li>Prefix (top-level): Set the Prefix field directly on the Rule. Applies to all objects matching the prefix.</li>
+<li>Filter: Specified via the Filter element, supporting:
+<ul>
+<li><code>Prefix</code>: Filter by prefix.</li>
+<li><code>Tag</code>: Filter by a single tag (Key/Value pair).</li>
+<li><code>And</code>: Combine Prefix with multiple Tag conditions.</li>
+</ul>
+</li>
+</ul>
+<p>General validation rules:</p>
+<ul>
+<li>Prefix and Filter cannot be used simultaneously, nor can both be omitted.</li>
+<li>Setting Prefix to an empty string <code>&quot;&quot;</code> means the rule applies to all objects in the bucket.</li>
+<li>Prefix length cannot exceed 1024 bytes.</li>
+<li>Prefix cannot point to trash directories (paths starting with <code>.Trash</code> or <code>.Trash/</code>).</li>
+<li>Only one of Prefix, Tag, or And can be specified inside a Filter.</li>
+<li>Tag Key length must be between 1 and 128 bytes. Tag Value length must be between 0 and 256 bytes.</li>
+<li>Tag Keys within an And operator must be unique.</li>
+<li>The And operator must contain at least one Tag. Specifying only a Prefix without Tags is not allowed. If there is no Prefix, the number of Tags must be greater than 1.</li>
+</ul>
+<p>Additional validation rules for FSO buckets:</p>
+<p>For FILE_SYSTEM_OPTIMIZED (FSO) buckets, the Prefix must be a normalized and valid path. The requirements are:</p>
+<ul>
+<li>Cannot start with <code>/</code>. FSO bucket prefixes are relative to the bucket root and do not need a leading slash.</li>
+<li>Cannot contain consecutive slashes <code>//</code>.</li>
+<li>Path components cannot contain <code>.</code> (current directory), <code>..</code> (parent directory), or <code>:</code>.</li>
+</ul>
+<p>The following table shows examples of valid and invalid prefixes:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Prefix</th>
+          <th>Valid for FSO Bucket</th>
+          <th>Reason</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>logs/</code></td>
+          <td>Valid</td>
+          <td>Normalized directory prefix</td>
+      </tr>
+      <tr>
+          <td><code>data/2024/</code></td>
+          <td>Valid</td>
+          <td>Multi-level directory prefix</td>
+      </tr>
+      <tr>
+          <td><code>archive</code></td>
+          <td>Valid</td>
+          <td>Simple prefix without slash</td>
+      </tr>
+      <tr>
+          <td><code>/logs/</code></td>
+          <td>Invalid</td>
+          <td>Cannot start with <code>/</code>, use <code>logs/</code> instead</td>
+      </tr>
+      <tr>
+          <td><code>data//backup/</code></td>
+          <td>Invalid</td>
+          <td>Contains consecutive slashes <code>//</code>, use <code>data/backup/</code> instead</td>
+      </tr>
+      <tr>
+          <td><code>data/../secret/</code></td>
+          <td>Invalid</td>
+          <td>Contains <code>..</code>, parent directory references are not allowed</td>
+      </tr>
+      <tr>
+          <td><code>data/./logs/</code></td>
+          <td>Invalid</td>
+          <td>Contains <code>.</code>, current directory references are not allowed</td>
+      </tr>
+      <tr>
+          <td><code>.Trash/</code></td>
+          <td>Invalid</td>
+          <td>Cannot point to trash directories</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="s3-gateway-api">S3 Gateway API</h2>
+<p>Lifecycle configurations are managed through standard S3 API operations using the <code>?lifecycle</code> query parameter.</p>
+<h3 id="set-lifecycle-configuration">Set Lifecycle Configuration</h3>
+<p>Example using the <code>Days</code> mode:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Rules&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;expire-logs-after-30-days&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Filter&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;Prefix&#34;</span>: <span style="color:#e6db74">&#34;logs/&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Expiration&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Example using the <code>Date</code> mode:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Rules&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;expire-temp-data&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Filter&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;Prefix&#34;</span>: <span style="color:#e6db74">&#34;temp/&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Expiration&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;Date&#34;</span>: <span style="color:#e6db74">&#34;2042-04-02T00:00:00Z&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Example using <code>And</code> to combine Prefix and Tag filtering:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Rules&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;ID&#34;</span>: <span style="color:#e6db74">&#34;expire-tagged-objects&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Status&#34;</span>: <span style="color:#e6db74">&#34;Enabled&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Filter&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;And&#34;</span>: {
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Prefix&#34;</span>: <span style="color:#e6db74">&#34;data/&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&#34;Tags&#34;</span>: [
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;Key&#34;</span>: <span style="color:#e6db74">&#34;environment&#34;</span>,
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">&#34;Value&#34;</span>: <span style="color:#e6db74">&#34;dev&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>          ]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Expiration&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;Days&#34;</span>: <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Set lifecycle configuration using AWS CLI:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aws s3api put-bucket-lifecycle-configuration <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bucket mybucket <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --endpoint-url http://localhost:9878 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --lifecycle-configuration file://lifecycle.json
+</span></span></code></pre></div><h3 id="get-lifecycle-configuration">Get Lifecycle Configuration</h3>
+<p>GET <code>/{bucket}?lifecycle</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aws s3api get-bucket-lifecycle-configuration <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bucket mybucket <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --endpoint-url http://localhost:9878
+</span></span></code></pre></div><h3 id="delete-lifecycle-configuration">Delete Lifecycle Configuration</h3>
+<p>DELETE <code>/{bucket}?lifecycle</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>aws s3api delete-bucket-lifecycle <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --bucket mybucket <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --endpoint-url http://localhost:9878
+</span></span></code></pre></div><h2 id="bucket-layout-support">Bucket Layout Support</h2>
+<p>Ozone supports three bucket layouts: OBJECT_STORE (OBS), LEGACY, and FILE_SYSTEM_OPTIMIZED (FSO). The lifecycle management behavior varies across different layouts.</p>
+<h3 id="obs-and-legacy-buckets">OBS and LEGACY Buckets</h3>
+<p>For OBS and LEGACY buckets, the lifecycle service directly iterates through the Key Table and performs prefix matching on key names. Objects that match and meet the expiration criteria are either deleted directly (OBS buckets do not support trash) or moved to trash (LEGACY buckets).</p>
+<h3 id="fso-buckets">FSO Buckets</h3>
+<p>For FSO buckets, the lifecycle service performs recursive evaluation based on the directory tree:</p>
+<ol>
+<li>Parses the directory path from the prefix and locates the corresponding directory in the directory table.</li>
+<li>Traverses the directory tree in depth-first order, evaluating files and subdirectories level by level.</li>
+<li>If all files and subdirectories under a directory have expired, the directory itself is also marked as expired.</li>
+</ol>
+<p>Prefix semantic differences:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Prefix</th>
+          <th>OBS/LEGACY Behavior</th>
+          <th>FSO Behavior</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>&quot;&quot;</code> (empty)</td>
+          <td>Matches all objects</td>
+          <td>Matches all objects and directories</td>
+      </tr>
+      <tr>
+          <td><code>key</code></td>
+          <td>Matches all keys starting with <code>key</code></td>
+          <td>Matches files and directories starting with <code>key</code></td>
+      </tr>
+      <tr>
+          <td><code>dir/</code></td>
+          <td>Matches all keys starting with <code>dir/</code></td>
+          <td>Matches files and subdirectories under <code>dir</code>, excluding <code>dir</code> itself</td>
+      </tr>
+      <tr>
+          <td><code>dir1/dir2</code></td>
+          <td>Matches all keys starting with <code>dir1/dir2</code></td>
+          <td>Matches files and directories under <code>dir1</code> starting with <code>dir2</code></td>
+      </tr>
+  </tbody>
+</table>
+<div class="alert alert-warning" role="alert">
+<p>For FSO buckets, a directory&rsquo;s ModificationTime is not updated when its child files or subdirectories change. Therefore, when configuring prefixes, if you only want to expire the contents under a directory without accidentally deleting the directory itself, append <code>/</code> to the end of the prefix. For example, use <code>data/</code> instead of <code>data</code>.</p>
+</div>
+<h2 id="trash-integration">Trash Integration</h2>
+<p>By default, the lifecycle service moves expired objects to trash (the <code>.Trash</code> directory) instead of deleting them directly. This provides a layer of protection against accidental operations.</p>
+<ul>
+<li>When <code>ozone.lifecycle.service.move.to.trash.enabled</code> is set to <code>true</code> (the default), expired objects are moved to the <code>.Trash/&lt;owner&gt;/Current/</code> path.</li>
+<li>OBS buckets do not support trash; expired objects are deleted directly.</li>
+<li>When set to <code>false</code>, all expired objects are deleted directly.</li>
+</ul>
+<p>Objects moved to trash still follow Ozone&rsquo;s trash cleanup policy and will be permanently deleted after the retention period.</p>
+<h2 id="configuration">Configuration</h2>
+<p>The lifecycle service is disabled by default and must be explicitly enabled in <code>ozone-site.xml</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-XML" data-lang="XML"><span style="display:flex;"><span><span style="color:#f92672">&lt;property&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;name&gt;</span>ozone.lifecycle.service.enabled<span style="color:#f92672">&lt;/name&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;value&gt;</span>true<span style="color:#f92672">&lt;/value&gt;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">&lt;description&gt;</span>Enable the object lifecycle management service.<span style="color:#f92672">&lt;/description&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/property&gt;</span>
+</span></span></code></pre></div><p>The following table lists all related configuration properties:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Property</th>
+          <th>Default</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>ozone.lifecycle.service.enabled</code></td>
+          <td><code>false</code></td>
+          <td>Whether to enable the lifecycle management service.</td>
+      </tr>
+      <tr>
+          <td><code>ozone.lifecycle.service.interval</code></td>
+          <td><code>24h</code></td>
+          <td>The scan interval of the lifecycle management service.</td>
+      </tr>
+      <tr>
+          <td><code>ozone.lifecycle.service.timeout</code></td>
+          <td><code>2h</code></td>
+          <td>The timeout threshold for lifecycle evaluation tasks. This setting does not interrupt a running task. It only prints a WARN-level log after a task completes if the actual execution time of a single bucket&rsquo;s evaluation exceeds this value.</td>
+      </tr>
+      <tr>
+          <td><code>ozone.lifecycle.service.workers</code></td>
+          <td><code>5</code></td>
+          <td>The number of worker threads for the lifecycle management service. Must be greater than 0. Each bucket is handled by one thread. The maximum number of buckets processed concurrently equals this value; remaining buckets are queued. Setting this too high increases concurrent RocksDB reads/writes and Ratis request pressure on the OM, potentially affecting cluster performance.</td>
+      </tr>
+      <tr>
+          <td><code>ozone.lifecycle.service.delete.batch-size</code></td>
+          <td><code>1000</code></td>
+          <td>The maximum number of objects included in a single batch delete request. Each batch of keys is packaged into a single Ratis delete request submitted to the OM. Excessively large batches increase the size of individual Ratis log entries and consume more memory. It is not recommended to exceed 1000.</td>
+      </tr>
+      <tr>
+          <td><code>ozone.lifecycle.service.move.to.trash.enabled</code></td>
+          <td><code>true</code></td>
+          <td>When enabled, expired objects are moved to trash; when disabled, they are deleted directly. Not applicable to OBS buckets.</td>
+      </tr>
+      <tr>
+          <td><code>ozone.lifecycle.service.delete.cached.directory.max-count</code></td>
+          <td><code>1000000</code></td>
+          <td>The maximum number of directories cached in memory during recursive evaluation of FSO buckets. The current evaluation will be aborted if this limit is exceeded.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="administrative-operations">Administrative Operations</h2>
+<p>Ozone provides administrative commands to view and control the lifecycle service runtime status.</p>
+<h3 id="check-service-status">Check Service Status</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ozone admin om lifecycle status <span style="color:#f92672">[</span>-id<span style="color:#f92672">=</span>&lt;omServiceId&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>-host<span style="color:#f92672">=</span>&lt;omHost&gt;<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h3 id="suspend-service">Suspend Service</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ozone admin om lifecycle suspend <span style="color:#f92672">[</span>-id<span style="color:#f92672">=</span>&lt;omServiceId&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>-host<span style="color:#f92672">=</span>&lt;omHost&gt;<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>After suspension, the service will not start new evaluation tasks. Tasks already in progress will stop after detecting the suspended state.</p>
+<div class="alert alert-warning" role="alert">
+<p>The suspend operation is only effective for the current OM runtime. After an OM restart, the service will resume according to the value of <code>ozone.lifecycle.service.enabled</code>.</p>
+</div>
+<h3 id="resume-service">Resume Service</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ozone admin om lifecycle resume <span style="color:#f92672">[</span>-id<span style="color:#f92672">=</span>&lt;omServiceId&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>-host<span style="color:#f92672">=</span>&lt;omHost&gt;<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="considerations">Considerations</h2>
+<ul>
+<li>Lifecycle configuration can currently only be set through the S3 API. To configure lifecycle rules for a bucket, you must have the S3 Gateway (S3G) service running and access the bucket via the S3 interface.</li>
+<li>The lifecycle service is disabled by default. Set <code>ozone.lifecycle.service.enabled=true</code> to enable it.</li>
+<li>In OM HA mode, only the leader OM executes lifecycle evaluation tasks.</li>
+<li>For FSO buckets, a directory is only marked as expired and deleted if all its child files and subdirectories have expired.</li>
+<li>For FSO buckets using Prefix, if the Prefix does not end with <code>/</code>, it will match both the directory with the exact name and sibling directories starting with the same prefix (e.g., <code>dir</code> matches both <code>dir</code> and <code>dir1</code>).</li>
+</ul>
+<h3 id="impact-of-om-leader-transfer-on-the-lifecycle-service">Impact of OM Leader Transfer on the Lifecycle Service</h3>
+<p>In an OM HA deployment, the lifecycle service only runs on the leader OM. When a Transfer Leader operation is performed:</p>
+<ol>
+<li>The lifecycle evaluation tasks running on the old leader will be interrupted.</li>
+<li>After the new leader is elected, the lifecycle service restarts from the beginning. Previously evaluated buckets are not skipped, and the task starts over from the first bucket.</li>
+</ol>
+<p>Therefore, in scenarios with frequent leader transfers, it is recommended to monitor the actual execution of the lifecycle service to ensure expired objects are cleaned up in a timely manner.</p>
+<h3 id="impact-of-mass-key-expiration-on-metadata-performance">Impact of Mass Key Expiration on Metadata Performance</h3>
+<p>If a large number of keys in a bucket expire and are deleted within a short period (e.g., over 100 million keys within 24 hours), it may generate a large number of tombstone records in RocksDB, leading to the following issues:</p>
+<ul>
+<li>Significantly increased metadata operation latency on the affected bucket, especially for operations like <code>list</code> that require iterating through RocksDB.</li>
+<li>Degraded read performance, as RocksDB needs to skip over large numbers of deleted tombstone records during queries.</li>
+</ul>
+<p>Mitigation measures:</p>
+<ol>
+<li>
+<p>Enable the automatic compaction service (recommended): Set <code>ozone.om.compaction.service.enabled=true</code> and ensure that <code>ozone.om.compaction.service.columnfamilies</code> includes <code>keyTable,fileTable,directoryTable</code> (included by default). This service runs compaction every 6 hours by default, adjustable via <code>ozone.om.compaction.service.run.interval</code>.</p>
+</li>
+<li>
+<p>Manual compaction: Use the <code>ozone repair om compact</code> command to manually compact the affected column families (requires admin privileges, OM must be running):</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone repair om compact --cf keyTable
+</span></span><span style="display:flex;"><span>ozone repair om compact --cf fileTable
+</span></span><span style="display:flex;"><span>ozone repair om compact --cf directoryTable
+</span></span></code></pre></div><p>In an OM HA environment, you can specify the target OM node via <code>--service-id</code> and <code>--node-id</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone repair om compact --cf keyTable --service-id omServiceId --node-id om1
+</span></span></code></pre></div><p>The compaction operation is executed asynchronously. Check the corresponding OM node&rsquo;s logs for completion status.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="../design/s3-object-lifecycle-management.html">Design Document</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lifecycle-mgmt.html">AWS S3 Lifecycle Overview</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-expire-general-considerations.html">AWS S3 Object Expiration</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-set-lifecycle-configuration-intro.html">AWS S3 Setting Lifecycle Configuration</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-configuration-examples.html">AWS S3 Lifecycle Configuration Examples</a></li>
+</ul>
+
+
+          
+          <a class="btn  btn-success btn-lg" href="../feature/om-ha.html">Next >></a>
+          
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="push"></div>
+  </div>
+
+  
+
+<footer class="footer">
+  <div class="container">
+    <span class="small text-muted">
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 21, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/917e4b7706241317d8dbf7199f10be0cd43fdd7f">917e4b7706</a>
+    </span>
+  </div>
+</footer>
+
+
+
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../js/ozonedoc.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>

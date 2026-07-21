@@ -6,7 +6,7 @@
     <description>Recent content in Designs on Ozone</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 20 Jul 2026 16:41:48 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 21 Jul 2026 12:47:37 +0800</lastBuildDate>
     <atom:link href="/design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Multipart Upload GC Pressure Optimizations</title>
@@ -91,6 +91,13 @@
       <pubDate>Wed, 30 Apr 2025 00:00:00 +0000</pubDate>
       <guid>/design/dn-usedspace-calculation.html</guid>
       <description>Describe proposal for optimization in datanode used space calculation.</description>
+    </item>
+    <item>
+      <title>S3 Object LifeCycle Management</title>
+      <link>/design/s3-object-lifecycle-management.html</link>
+      <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>/design/s3-object-lifecycle-management.html</guid>
+      <description>S3 Object expiration support, similar like AWS</description>
     </item>
     <item>
       <title>Improved Layout of Ozone Tools</title>

@@ -112,6 +112,19 @@
     <loc>/feature/snapshotdefragmentation.html</loc>
     <lastmod>2026-05-09T00:14:05-07:00</lastmod>
   </url><url>
+    <loc>/feature/lifecycle.html</loc>
+    <lastmod>2026-07-21T12:47:37+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/feature/lifecycle.html"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/feature/lifecycle.html"
+                />
+  </url><url>
     <loc>/feature/om-ha.html</loc>
     <lastmod>2026-06-24T01:23:56-05:00</lastmod>
     <xhtml:link
@@ -717,7 +730,7 @@
                 />
   </url><url>
     <loc>/design/index.html</loc>
-    <lastmod>2026-07-20T16:41:48+05:30</lastmod>
+    <lastmod>2026-07-21T12:47:37+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -779,6 +792,9 @@
   </url><url>
     <loc>/design/dn-usedspace-calculation.html</loc>
     <lastmod>2025-06-18T14:19:25+05:30</lastmod>
+  </url><url>
+    <loc>/design/s3-object-lifecycle-management.html</loc>
+    <lastmod>2026-07-21T12:47:37+08:00</lastmod>
   </url><url>
     <loc>/design/tools.html</loc>
     <lastmod>2025-08-12T14:24:23-04:00</lastmod>

@@ -64,6 +64,13 @@
       <description>Reduce the disk usage occupied by Ozone Snapshot metadata.</description>
     </item>
     <item>
+      <title>Object Lifecycle Management</title>
+      <link>/feature/lifecycle.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/feature/lifecycle.html</guid>
+      <description>S3-compatible object lifecycle management with automatic object expiration</description>
+    </item>
+    <item>
       <title>OM High Availability</title>
       <link>/feature/om-ha.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -615,6 +622,13 @@
       <pubDate>Wed, 30 Apr 2025 00:00:00 +0000</pubDate>
       <guid>/design/dn-usedspace-calculation.html</guid>
       <description>Describe proposal for optimization in datanode used space calculation.</description>
+    </item>
+    <item>
+      <title>S3 Object LifeCycle Management</title>
+      <link>/design/s3-object-lifecycle-management.html</link>
+      <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>/design/s3-object-lifecycle-management.html</guid>
+      <description>S3 Object expiration support, similar like AWS</description>
     </item>
     <item>
       <title>Improved Layout of Ozone Tools</title>

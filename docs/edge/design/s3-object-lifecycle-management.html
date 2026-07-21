@@ -46,9 +46,8 @@ s=d.getElementsByTagName('script')[0];
   </head>
 
 
-<body>
+  <body>
 
-  
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -76,11 +75,9 @@ s=d.getElementsByTagName('script')[0];
   </div>
 </nav>
 
-
-  <div class="wrapper">
-  <div class="container-fluid">
-    <div class="row">
-      
+    <div class="container-fluid">
+      <div class="row">
+        
 <div class="col-sm-2 col-md-2 sidebar" id="sidebar">
   <ul class="nav nav-sidebar">
     
@@ -598,222 +595,51 @@ s=d.getElementsByTagName('script')[0];
 
 </div>
 
-      <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main-content">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main-content">
+            <div class="col-md-9">
+                <h1><a href="https://issues.apache.org/jira/browse/HDDS-8342">[HDDS-8342]</a> S3 Object LifeCycle Management (design) </h1>
+                <div><i>Authors: Mohanad Elsafty, Xi Chen, Ivan Andika, Sammi Chen, Ashish Kumar</i><div class="pull-right">2025-04-07</div></div>
+                <p>&nbsp</p>
 
+                <div class="panel panel-success">
+                    <div class="panel-heading">Summary</div>
+                    <div class="panel-body">
+                        S3 Object expiration support, similar like AWS
+                    </div>
+                </div>
 
+              <!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
 
-        <div class="col-md-9">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-                  <li class="breadcrumb-item" aria-current="page"><a href="../recipe/index.html">Recipes</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Access Ozone object store with Amazon Boto3 client</li>
-                </ol>
-              </nav>
-
-          
-
-<div class="pull-right">
-    
-    
-    
-    
-    
-    <a href="../zh/recipe/botoclient.html"><span class="label label-success">中文</span></a>
-    
-    
-</div>
-
-
-          <div class="col-md-9">
-            <h1>Access Ozone object store with Amazon Boto3 client</h1>
-
-            <!---
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
+   http://www.apache.org/licenses/LICENSE-2.0
 
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
-  limitations under the License.
+  limitations under the License. See accompanying LICENSE file.
 -->
-<p>This recipe shows how Ozone object store can be accessed from Boto3 client. Following apis were verified:</p>
+<h1 id="abstract">Abstract</h1>
+<p>Support AWS S3 compatible object lifecycle management with expiration action.</p>
+<h1 id="link">Link</h1>
 <ul>
-<li>Create bucket</li>
-<li>List bucket</li>
-<li>Head bucket</li>
-<li>Delete bucket</li>
-<li>Upload file</li>
-<li>Download file</li>
-<li>Delete objects(keys)</li>
-<li>Head object</li>
-<li>Multipart upload</li>
+<li><a href="https://issues.apache.org/jira/secure/attachment/13075761/S3%20Object%20LifeCycle%20Management-Object%20Expiration-V1.pdf">https://issues.apache.org/jira/secure/attachment/13075761/S3%20Object%20LifeCycle%20Management-Object%20Expiration-V1.pdf</a></li>
 </ul>
-<h2 id="requirements">Requirements</h2>
-<p>You will need a higher version of Python3 for your Boto3 client as Boto3 installation requirement indicates at here:
-<a href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html">https://boto3.amazonaws.com/v1/documentation/api/latest/index.html</a></p>
-<h2 id="obtain-resource-to-ozone">Obtain resource to Ozone</h2>
-<p>You may reference Amazon Boto3 documentation regarding the creation of &lsquo;s3&rsquo; resources at here:
-<a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/resources.html">https://boto3.amazonaws.com/v1/documentation/api/latest/guide/resources.html</a></p>
-<pre><code>s3 = boto3.resource('s3',
-                    endpoint_url='http://localhost:9878',
-                    aws_access_key_id='testuser/scm@EXAMPLE.COM',
-                    aws_secret_access_key='c261b6ecabf7d37d5f9ded654b1c724adac9bd9f13e247a235e567e8296d2999'
-)    
-'endpoint_url' is pointing to Ozone s3 endpoint.
-</code></pre>
-<h2 id="obtain-client-to-ozone-via-session">Obtain client to Ozone via session</h2>
-<p>You may reference Amazon Boto3 documentation regarding session at here:
-<a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html">https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html</a></p>
-<pre><code>Create a session
-    session = boto3.session.Session()
 
-Obtain s3 client to Ozone via session:
-
-    s3_client = session.client(
-        service_name='s3',
-        aws_access_key_id='testuser/scm@EXAMPLE.COM',
-        aws_secret_access_key='c261b6ecabf7d37d5f9ded654b1c724adac9bd9f13e247a235e567e8296d2999',
-        endpoint_url='http://localhost:9878',
-    )
-    'endpoint_url' is pointing to Ozone s3 endpoint.
-
-In our code sample below, we're demonstrating the usage of both s3 and s3_client.
-</code></pre>
-<p>There are multiple ways to configure Boto3 client credentials if you&rsquo;re connecting to a secured cluster. In these cases,
-the above lines of passing &lsquo;aws_access_key_id&rsquo; and &lsquo;aws_secret_access_key&rsquo; when creating Ozone s3 client shall be skipped.</p>
-<p>Please refer to Boto3 documentation for details at here:
-<a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html">https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html</a></p>
-<h3 id="create-a-bucket">Create a bucket</h3>
-<pre><code>response = s3_client.create_bucket(Bucket='bucket1')
-print(response)
-</code></pre>
-<p>This will create a bucket &lsquo;bucket1&rsquo; in Ozone volume &lsquo;s3v&rsquo;.</p>
-<h3 id="list-buckets">List buckets</h3>
-<pre><code>response = s3_client.list_buckets()
-print('Existing buckets:')
-for bucket in response['Buckets']:
-    print(f'  {bucket[&quot;Name&quot;]}')
-</code></pre>
-<p>This will list all buckets in Ozone volume &lsquo;s3v&rsquo;.</p>
-<h3 id="head-a-bucket">Head a bucket</h3>
-<pre><code>response = s3_client.head_bucket(Bucket='bucket1')
-print(response)
-</code></pre>
-<p>This will head bucket &lsquo;bucket1&rsquo; in Ozone volume &lsquo;s3v&rsquo;.</p>
-<h3 id="delete-a-bucket">Delete a bucket</h3>
-<pre><code>response = s3_client.delete_bucket(Bucket='bucket1')
-print(response)
-</code></pre>
-<p>This will delete the bucket &lsquo;bucket1&rsquo; from Ozone volume &lsquo;s3v&rsquo;.</p>
-<h3 id="upload-a-file">Upload a file</h3>
-<pre><code>response = s3.Bucket('bucket1').upload_file('./README.md','README.md')
-print(response)
-</code></pre>
-<p>This will upload &lsquo;README.md&rsquo; to Ozone creates a key &lsquo;README.md&rsquo; in volume &lsquo;s3v&rsquo;.</p>
-<h3 id="download-a-file">Download a file</h3>
-<pre><code>response = s3.Bucket('bucket1').download_file('README.md', 'download.md')
-print(response)
-</code></pre>
-<p>This will download &lsquo;README.md&rsquo; from Ozone volume &lsquo;s3v&rsquo; to local and create a file with name &lsquo;download.md&rsquo;.</p>
-<h3 id="head-an-object">Head an object</h3>
-<pre><code>response = s3_client.head_object(Bucket='bucket1', Key='README.md')
-print(response)
-</code></pre>
-<p>This will head object &lsquo;README.md&rsquo; from Ozone volume &lsquo;s3v&rsquo; in the bucket &lsquo;bucket1&rsquo;.</p>
-<h3 id="delete-objects">Delete Objects</h3>
-<pre><code>response = s3_client.delete_objects(
-    Bucket='bucket1',
-    Delete={
-        'Objects': [
-            {
-                'Key': 'README4.md',
-            },
-            {
-                'Key': 'README3.md',
-            },
-        ],
-        'Quiet': False,
-    },
-)
-</code></pre>
-<p>This will delete objects &lsquo;README3.md&rsquo; and &lsquo;README4.md&rsquo; from Ozone volume &lsquo;s3v&rsquo; in bucket &lsquo;bucket1&rsquo;.</p>
-<h3 id="multipart-upload">Multipart upload</h3>
-<pre><code>response = s3_client.create_multipart_upload(Bucket='bucket1', Key='key1')
-print(response)
-uid=response['UploadId']
-print(uid)
-
-response = s3_client.upload_part_copy(
-    Bucket='bucket1',
-    CopySource='/bucket1/maven.gz',
-    Key='key1',
-    PartNumber=1,
-    UploadId=str(uid)
-)
-print(response)
-etag1=response.get('CopyPartResult').get('ETag')
-print(etag1)
-
-response = s3_client.upload_part_copy(
-    Bucket='bucket1',
-    CopySource='/bucket1/maven1.gz',
-    Key='key1',
-    PartNumber=2,
-    UploadId=str(uid)
-)
-print(response)
-etag2=response.get('CopyPartResult').get('ETag')
-print(etag2)
-
-response = s3_client.complete_multipart_upload(
-    Bucket='bucket1',
-    Key='key1',
-    MultipartUpload={
-        'Parts': [
-            {
-                'ETag': str(etag1),
-                'PartNumber': 1,
-            },
-            {
-                'ETag': str(etag2),
-                'PartNumber': 2,
-            },
-        ],
-    },
-    UploadId=str(uid),
-)
-print(response)
-</code></pre>
-<p>This will use &lsquo;maven.gz&rsquo; and &lsquo;maven1.gz&rsquo; as copy source from Ozone volume &lsquo;s3v&rsquo; to create a new object &lsquo;key1&rsquo;
-in Ozone volume &lsquo;s3v&rsquo;. Please note &lsquo;ETag&rsquo;s is required and important for the call.</p>
-
-
-          
-          <a class="btn  btn-success btn-lg" href="../recipe/prometheus.html">Next >></a>
-          
-          </div>
+            </div>
 
         </div>
       </div>
     </div>
-  </div>
-    <div class="push"></div>
-  </div>
 
-  
+
 
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: March 2, 2021 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/b07162b5cea577a2c785cc93fb6953c8628fbf5f">b07162b5ce</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 21, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/917e4b7706241317d8dbf7199f10be0cd43fdd7f">917e4b7706</a>
     </span>
   </div>
 </footer>
@@ -825,6 +651,5 @@ in Ozone volume &lsquo;s3v&rsquo;. Please note &lsquo;ETag&rsquo;s is required a
 <script src="../js/bootstrap.min.js"></script>
 
 
-</body>
-
+  </body>
 </html>

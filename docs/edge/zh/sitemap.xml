@@ -93,6 +93,19 @@
                 href="/zh/feature/diskbalancer.html"
                 />
   </url><url>
+    <loc>/zh/feature/lifecycle.html</loc>
+    <lastmod>2026-07-21T12:47:37+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/feature/lifecycle.html"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/feature/lifecycle.html"
+                />
+  </url><url>
     <loc>/zh/feature/om-ha.html</loc>
     <lastmod>2025-01-06T08:40:12+01:00</lastmod>
     <xhtml:link
