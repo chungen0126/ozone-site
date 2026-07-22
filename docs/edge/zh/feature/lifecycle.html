@@ -653,6 +653,7 @@ s=d.getElementsByTagName('script')[0];
 <li>不能以 <code>/</code> 开头。FSO Bucket 的 Prefix 是相对于 Bucket 根目录的路径，无需前导斜杠。</li>
 <li>不能包含连续的斜杠 <code>//</code>。</li>
 <li>路径组件中不能包含 <code>.</code>（当前目录）、<code>..</code>（父目录）或 <code>:</code>。</li>
+<li>路径必须以 <code>/</code> 结尾， 或者 “” 代表root。</li>
 </ul>
 <p>以下是合法与不合法 Prefix 的对照示例：</p>
 <table>
@@ -676,8 +677,8 @@ s=d.getElementsByTagName('script')[0];
       </tr>
       <tr>
           <td><code>archive</code></td>
-          <td>合法</td>
-          <td>无斜杠的简单前缀</td>
+          <td>不合法</td>
+          <td>无斜杠结尾</td>
       </tr>
       <tr>
           <td><code>/logs/</code></td>
@@ -703,6 +704,16 @@ s=d.getElementsByTagName('script')[0];
           <td><code>.Trash/</code></td>
           <td>不合法</td>
           <td>不能指向回收站目录</td>
+      </tr>
+      <tr>
+          <td>``</td>
+          <td>合法</td>
+          <td>指向Bucket 根目录</td>
+      </tr>
+      <tr>
+          <td><code>/</code></td>
+          <td>不合法</td>
+          <td>它不指向 Bucket 根目录。正确代表根目录的前缀是 “”</td>
       </tr>
   </tbody>
 </table>
@@ -909,9 +920,9 @@ s=d.getElementsByTagName('script')[0];
 <p>在 OM HA 部署中，生命周期服务仅在 Leader OM 上运行。当执行 Transfer Leader 操作时：</p>
 <ol>
 <li>旧 Leader 上正在运行的生命周期评估任务会被中断。</li>
-<li>新 Leader 当选后，会重新从头启动生命周期服务，已经评估过的 Bucket 不会被跳过，任务将从第一个 Bucket 重新开始。</li>
+<li>新 Leader 当选后，会重新从头启动生命周期服务，已经评估过的 Bucket 会被跳过，任务将从中断的Bucket 重新开始。</li>
 </ol>
-<p>因此，在频繁进行 Leader 切换的场景下，建议关注生命周期服务的实际执行情况，确保过期对象能被及时清理。</p>
+<p>在频繁进行 Leader 切换的场景下，建议关注生命周期服务的实际执行情况，确保过期对象能被及时清理。</p>
 <h3 id="大批量-key-过期对元数据性能的影响">大批量 Key 过期对元数据性能的影响</h3>
 <p>如果某个 Bucket 在短时间内（例如 24 小时以内）有大量 Key 过期并被删除（例如超过 1 亿个 Key），可能会导致 RocksDB 中产生大量的墓碑（tombstone）记录，从而引发以下问题：</p>
 <ul>
@@ -960,7 +971,7 @@ s=d.getElementsByTagName('script')[0];
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: July 21, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/917e4b7706241317d8dbf7199f10be0cd43fdd7f">917e4b7706</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 22, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/68c4231f512fb7459ece38dae596443320f6a039">68c4231f51</a>
     </span>
   </div>
 </footer>

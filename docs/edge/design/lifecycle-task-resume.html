@@ -46,8 +46,7 @@ s=d.getElementsByTagName('script')[0];
   </head>
 
 
-<body>
-
+  <body>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
@@ -76,10 +75,8 @@ s=d.getElementsByTagName('script')[0];
   </div>
 </nav>
 
-
-<div class="wrapper">
-<div class="container-fluid">
-    <div class="row">
+    <div class="container-fluid">
+      <div class="row">
         
 <div class="col-sm-2 col-md-2 sidebar" id="sidebar">
   <ul class="nav nav-sidebar">
@@ -552,7 +549,7 @@ s=d.getElementsByTagName('script')[0];
         
     
         
-            <li class="active">
+            <li class="">
                 
                    <a href="../tools/index.html">
                 
@@ -598,226 +595,135 @@ s=d.getElementsByTagName('script')[0];
 
 </div>
 
-        <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main-content">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main-content">
             <div class="col-md-9">
+                <h1><a href="https://issues.apache.org/jira/browse/">[]</a>  () </h1>
+                <div><i>Authors: </i><div class="pull-right">0001-01-01</div></div>
+                <p>&nbsp</p>
 
-                
+                <div class="panel panel-success">
+                    <div class="panel-heading">Summary</div>
+                    <div class="panel-body">
+                        <p>/*</p>
+<ul>
+<li>Licensed to the Apache Software Foundation (ASF) under one or more</li>
+<li>contributor license agreements. See the NOTICE file distributed with</li>
+<li>this work for additional information regarding copyright ownership.</li>
+<li>The ASF licenses this file to You under the Apache License, Version 2.0</li>
+<li>(the &ldquo;License&rdquo;); you may not use this file except in compliance with</li>
+<li>the License. You may obtain a copy of the License at</li>
+<li></li>
+<li>
+<pre><code> http://www.apache.org/licenses/LICENSE-2.0
+</code></pre>
+</li>
+<li></li>
+<li>Unless required by applicable law or agreed to in writing, software</li>
+<li>distributed under the License is distributed on an &ldquo;AS IS&rdquo; BASIS,</li>
+<li>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</li>
+<li>See the License for the specific language governing permissions and</li>
+<li>limitations under the License.
+*/</li>
+</ul>
+<h1 id="design-for-resumable-lifecycle-scanshdds-8342">Design for Resumable Lifecycle Scans(HDDS-8342)</h1>
+<h2 id="problem-statement">Problem Statement:</h2>
+<p>The <code>HDDS-8342</code> branch introduces the <code>KeyLifecycleService</code>, a background service running on the Ozone Manager (OM) Leader to enforce bucket lifecycle rules (expiration, moving to trash, and aborting incomplete multipart uploads).
+The entire bucket is scanned in a single <code>call()</code> execution. If the OM restarts, crashes, or a leader transfer occurs, the scan state is lost. The new leader must restart the scan from the beginning.
+For buckets with billions of keys, the scan may never complete if leader transfers happen periodically.</p>
+                    </div>
+                </div>
 
-<div class="pull-right">
-    
-    
-    
-    
-    
-    <a href="../zh/tools/index.html"><span class="label label-success">中文</span></a>
-    
-    
-</div>
+              <p>/*</p>
+<ul>
+<li>Licensed to the Apache Software Foundation (ASF) under one or more</li>
+<li>contributor license agreements. See the NOTICE file distributed with</li>
+<li>this work for additional information regarding copyright ownership.</li>
+<li>The ASF licenses this file to You under the Apache License, Version 2.0</li>
+<li>(the &ldquo;License&rdquo;); you may not use this file except in compliance with</li>
+<li>the License. You may obtain a copy of the License at</li>
+<li></li>
+<li>
+<pre><code> http://www.apache.org/licenses/LICENSE-2.0
+</code></pre>
+</li>
+<li></li>
+<li>Unless required by applicable law or agreed to in writing, software</li>
+<li>distributed under the License is distributed on an &ldquo;AS IS&rdquo; BASIS,</li>
+<li>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</li>
+<li>See the License for the specific language governing permissions and</li>
+<li>limitations under the License.
+*/</li>
+</ul>
+<h1 id="design-for-resumable-lifecycle-scanshdds-8342">Design for Resumable Lifecycle Scans(HDDS-8342)</h1>
+<h2 id="problem-statement">Problem Statement:</h2>
+<p>The <code>HDDS-8342</code> branch introduces the <code>KeyLifecycleService</code>, a background service running on the Ozone Manager (OM) Leader to enforce bucket lifecycle rules (expiration, moving to trash, and aborting incomplete multipart uploads).
+The entire bucket is scanned in a single <code>call()</code> execution. If the OM restarts, crashes, or a leader transfer occurs, the scan state is lost. The new leader must restart the scan from the beginning.
+For buckets with billions of keys, the scan may never complete if leader transfers happen periodically.</p>
+<h2 id="design-persisting-bucket-scan-pointers">Design: Persisting Bucket Scan Pointers</h2>
+<p>To solve the resumability issues, we need to persist the scan progress (the &ldquo;pointer&rdquo;) to the OM DB. This ensures that a new OM leader can resume from where the previous leader left off.</p>
+<h3 id="21-data-structure-for-the-scan-pointer">2.1 Data Structure for the Scan Pointer</h3>
+<p>Define a new Protobuf message <code>LifecycleScanState</code> to capture the exact position of the scan.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-protobuf" data-lang="protobuf"><span style="display:flex;"><span><span style="color:#66d9ef">message</span> <span style="color:#a6e22e">LifecycleScanState</span> {<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>    <span style="color:#66d9ef">optional</span> <span style="color:#66d9ef">string</span> bucketKey <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  <span style="color:#75715e">// e.g., /volume/bucket
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">optional</span> <span style="color:#66d9ef">uint64</span> bucketObjID <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;  <span style="color:#75715e">// bucket&#39;s object ID, in case the bucket is deleted and recreated with same name
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">optional</span> <span style="color:#66d9ef">uint64</span> lifecycleConfigurationUpdateID <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;  <span style="color:#75715e">// lifecycle configuration update ID, in case the bucket is updated with new rules
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">optional</span> <span style="color:#66d9ef">uint64</span> scanStartTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;  <span style="color:#75715e">// Epoch time when this full scan started
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">optional</span> <span style="color:#66d9ef">uint64</span> scanEndTime <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>;  <span style="color:#75715e">// Epoch time when this full scan is completed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">optional</span> <span style="color:#66d9ef">string</span> lastScannedKey <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>;  <span style="color:#75715e">// the last scanned key in the bucket(for both OBS and FSO)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">optional</span> <span style="color:#66d9ef">string</span> lastScannedDir <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>;  <span style="color:#75715e">// the last scanned dir path, e.g /dir1/dir2/dir3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">optional</span> <span style="color:#66d9ef">string</span> lastScannedDirKey <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>; <span style="color:#75715e">// the last scanned dir key in directoryTable, e.g /0/1/3/dir3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">optional</span> <span style="color:#66d9ef">string</span> lastScannedMpuKey <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>}<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h3 id="om-db-schema-updates">OM DB Schema Updates</h3>
+<p>Add a new table <code>lifecycleScanStateTable</code> to <code>OMMetadataManager</code> to store the scan states:</p>
+<ul>
+<li><strong>Table Name:</strong> <code>lifecycleScanStateTable</code></li>
+<li><strong>Key:</strong> <code>bucketKey</code> (String, e.g., <code>/volumeName/bucketName</code>)</li>
+<li><strong>Value:</strong> <code>LifecycleScanState</code></li>
+</ul>
+<h3 id="when-to-persist-the-pointer">When to Persist the Pointer</h3>
+<p>Persisting the pointer for every key would overwhelm Ratis and RocksDB. We should checkpoint periodically:</p>
+<ol>
+<li><strong>Piggybacking on Deletes:</strong> Add an optional <code>LifecycleScanState</code> field to <code>DeleteKeysRequest</code>. When the OM state machine applies the deletion, it atomically updates the <code>lifecycleScanStateTable</code> with the new pointer. This guarantees exactly-once semantics for the scan pointer relative to deletions.</li>
+<li><strong>Move to trash</strong>: Since there is no <code>RenameKeysRequest</code>, rename has be called multiple times for a batch of keys. We introduce a new OM request <code>SaveLifecycleScanStateRequest</code>. After a batch of keys are moved to trash, call <code>SaveLifecycleScanStateRequest</code> explicitly to persist the state.</li>
+<li><strong>Periodic Standalone Checkpoints:</strong> If no keys are expired (e.g., scanning millions of valid keys), we still need to save progress. The <code>LifecycleActionTask</code> will send this request periodically (e.g., every 100,000 keys iterated, or every 1 minute of execution time).</li>
+<li><strong>End of Scan:</strong> When the scan for a bucket finishes, a <code>SaveLifecycleScanStateRequest</code> is sent to mark state as completed by recording the completion time.</li>
+</ol>
+<h3 id="how-to-resume-the-scan">How to Resume the Scan</h3>
+<p>When <code>KeyLifecycleService</code> schedules a <code>LifecycleActionTask</code> for a bucket, it first reads the <code>LifecycleScanState</code> from the <code>lifecycleScanStateTable</code>.</p>
+<ul>
+<li>
+<p><strong>OBS/Legacy Resumption:</strong>
+The iterator for <code>keyTable</code> is initialized to seek to <code>lastScannedKey</code> instead of the bucket prefix.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>TableIterator<span style="color:#f92672">&lt;</span>String, <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> Table.<span style="color:#a6e22e">KeyValue</span><span style="color:#f92672">&lt;</span>String, OmKeyInfo<span style="color:#f92672">&gt;&gt;</span> keyTblItr <span style="color:#f92672">=</span> keyTable.<span style="color:#a6e22e">iterator</span>(bucketPrefix);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (state.<span style="color:#a6e22e">getLastScannedKey</span>() <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    keyTblItr.<span style="color:#a6e22e">seek</span>(state.<span style="color:#a6e22e">getLastScannedKey</span>());
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// skip the exact match since it was already processed</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p><strong>FSO Resumption:</strong>
+Since FSO bucket is iterated via a Depth-First Search (DFS) way, any directory that is after the <code>lastScannedDir</code> in the traversal path can be skipped.</p>
+</li>
+<li>
+<p><strong>MPU Resumption:</strong>
+// TODO: implement MPU resumption
+The <code>multipartInfoTable</code> iterator seeks to <code>lastScannedMpuKey</code> and continues.</p>
+</li>
+</ul>
 
-                <h1>Tools</h1>
             </div>
 
-            <div class="col-md-9">
-                <!---
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
-<p>Ozone has a set of command line tools that can be used to manage ozone.</p>
-<p>All these commands are invoked via the <code>ozone</code> script.</p>
-<p>Daemon commands:</p>
-<ul>
-<li><strong>scm</strong> -  Storage Container Manager service, via daemon can be started
-or stopped.</li>
-<li><strong>om</strong> -   Ozone Manager, via daemon command can be started or stopped.</li>
-<li><strong>datanode</strong> - Via daemon command, the HDDS data nodes can be started or
-stopped.</li>
-<li><strong>s3g</strong> - Start the S3 compatible REST gateway</li>
-<li><strong>recon</strong> - The Web UI service of Ozone can be started with this command.</li>
-<li><strong>httpfs</strong> - Start the HttpFS gateway</li>
-</ul>
-<p>Client commands:</p>
-<ul>
-<li><strong>sh</strong> -  Primary command line interface for ozone to manage volumes/buckets/keys.</li>
-<li><strong>fs</strong> - Runs a command on ozone file system (similar to <code>hdfs dfs</code>)</li>
-<li><strong>local</strong> - Runs a single-node local Ozone cluster (SCM, OM, and datanodes)
-in one process for development.</li>
-<li><strong>version</strong> - Prints the version of Ozone and HDDS.</li>
-</ul>
-<p>Admin commands:</p>
-<ul>
-<li><strong>admin</strong> -  Collects admin and developer related commands related to the
-ozone components.</li>
-<li><strong>insight</strong> - Generic tool to display filtered log, metrics or configs to help debuging. See <a href="../feature/observability.html">the observability</a> page for more information.</li>
-<li><strong>classpath</strong> - Prints the class path needed to get the hadoop jar and the
-required libraries.</li>
-<li><strong>dtutil</strong>    - Operations related to delegation tokens</li>
-<li><strong>envvars</strong> - Display computed Ozone environment variables.</li>
-<li><strong>getconf</strong> -  Reads ozone config values from configuration.</li>
-<li><strong>genconf</strong> -  Generate minimally required ozone configs and output to
-ozone-site.xml.</li>
-</ul>
-<p>Test tools:</p>
-<ul>
-<li><strong>freon</strong> -  Runs the ozone load generator.</li>
-</ul>
-<p>For more information see the following subpages:</p>
-
-                
-                
-                
-                
-
-                
-                
-                <div class="row">
-                    
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    
-                                    Debug Tools
-                                </h2>
-                                <p class="card-text">Ozone Debug command can be used for all the debugging related tasks.</p>
-                                <a href="../tools/debug/index.html"
-                                   class=" btn btn-primary btn-lg">Debug Tools</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                
-
-                
-                
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    
-                                    Ozone Repair
-                                </h2>
-                                <p class="card-text">Advanced tool to repair Ozone.</p>
-                                <a href="../tools/repair.html"
-                                   class=" btn btn-primary btn-lg">Ozone Repair</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                        </div>
-                    
-                
-
-                
-                
-                <div class="row">
-                    
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    
-                                    Logs in Ozone
-                                </h2>
-                                <p class="card-text">An overview of logging in Apache Ozone.</p>
-                                <a href="../tools/logsinozone.html"
-                                   class=" btn btn-primary btn-lg">Logs in Ozone</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                
-
-                
-                
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    
-                                    Ozone Admin
-                                </h2>
-                                <p class="card-text">Ozone Admin command can be used for all the admin related tasks.</p>
-                                <a href="../tools/admin.html"
-                                   class=" btn btn-primary btn-lg">Ozone Admin</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                        </div>
-                    
-                
-
-                
-                
-                <div class="row">
-                    
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    
-                                    Generate Configurations
-                                </h2>
-                                <p class="card-text">Tool to generate default configuration</p>
-                                <a href="../tools/genconf.html"
-                                   class=" btn btn-primary btn-lg">Generate Configurations</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                
-
-                
-                
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    
-                                    Testing tools
-                                </h2>
-                                <p class="card-text">Ozone contains multiple test tools for load generation, partitioning test or acceptance tests.</p>
-                                <a href="../tools/testtools.html"
-                                   class=" btn btn-primary btn-lg">Testing tools</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                        </div>
-                    
-                
-                
-            </div>
         </div>
+      </div>
     </div>
-</div>
-    <div class="push"></div>
-</div>
 
 
 
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: July 22, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/c4b2ae1fff4091f22f52e649280898743ff244cc">c4b2ae1fff</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 13, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/daef2f19c2946ad8e909323f5956b1884bba64fe">daef2f19c2</a>
     </span>
   </div>
 </footer>
@@ -829,6 +735,5 @@ ozone-site.xml.</li>
 <script src="../js/bootstrap.min.js"></script>
 
 
-</body>
-
+  </body>
 </html>

@@ -837,6 +837,7 @@ s=d.getElementsByTagName('script')[0];
 <li>Cannot start with <code>/</code>. FSO bucket prefixes are relative to the bucket root and do not need a leading slash.</li>
 <li>Cannot contain consecutive slashes <code>//</code>.</li>
 <li>Path components cannot contain <code>.</code> (current directory), <code>..</code> (parent directory), or <code>:</code>.</li>
+<li>Must end with &ldquo;/&rdquo;, or &quot;&quot; for root.</li>
 </ul>
 <p>The following table shows examples of valid and invalid prefixes:</p>
 <table>
@@ -860,8 +861,8 @@ s=d.getElementsByTagName('script')[0];
       </tr>
       <tr>
           <td><code>archive</code></td>
-          <td>Valid</td>
-          <td>Simple prefix without slash</td>
+          <td>Invalid</td>
+          <td>Without tailing slash</td>
       </tr>
       <tr>
           <td><code>/logs/</code></td>
@@ -887,6 +888,16 @@ s=d.getElementsByTagName('script')[0];
           <td><code>.Trash/</code></td>
           <td>Invalid</td>
           <td>Cannot point to trash directories</td>
+      </tr>
+      <tr>
+          <td>``</td>
+          <td>Valid</td>
+          <td>Point to Bucket&rsquo;s root directory</td>
+      </tr>
+      <tr>
+          <td><code>/</code></td>
+          <td>Invalid</td>
+          <td>It doesn&rsquo;t point to Bucket&rsquo;s root directory. Use &quot;&quot; instead</td>
       </tr>
   </tbody>
 </table>
@@ -1093,9 +1104,9 @@ s=d.getElementsByTagName('script')[0];
 <p>In an OM HA deployment, the lifecycle service only runs on the leader OM. When a Transfer Leader operation is performed:</p>
 <ol>
 <li>The lifecycle evaluation tasks running on the old leader will be interrupted.</li>
-<li>After the new leader is elected, the lifecycle service restarts from the beginning. Previously evaluated buckets are not skipped, and the task starts over from the first bucket.</li>
+<li>After the new leader is elected, the lifecycle service will skip the previously evaluated buckets/bucket contents, starting from the interrupted bucket.</li>
 </ol>
-<p>Therefore, in scenarios with frequent leader transfers, it is recommended to monitor the actual execution of the lifecycle service to ensure expired objects are cleaned up in a timely manner.</p>
+<p>In scenarios with frequent leader transfers, it is recommended to monitor the actual execution of the lifecycle service to ensure expired objects are cleaned up in a timely manner.</p>
 <h3 id="impact-of-mass-key-expiration-on-metadata-performance">Impact of Mass Key Expiration on Metadata Performance</h3>
 <p>If a large number of keys in a bucket expire and are deleted within a short period (e.g., over 100 million keys within 24 hours), it may generate a large number of tombstone records in RocksDB, leading to the following issues:</p>
 <ul>
@@ -1144,7 +1155,7 @@ s=d.getElementsByTagName('script')[0];
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: July 21, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/917e4b7706241317d8dbf7199f10be0cd43fdd7f">917e4b7706</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 22, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/68c4231f512fb7459ece38dae596443320f6a039">68c4231f51</a>
     </span>
   </div>
 </footer>

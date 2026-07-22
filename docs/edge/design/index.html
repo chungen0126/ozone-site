@@ -1075,6 +1075,41 @@ s=d.getElementsByTagName('script')[0];
                             <td>implemented</td>
                         </tr>
                         
+                        <tr>
+                            <td>0001-01-01</td>
+                            <td>
+                                <a href="https://issues.apache.org/jira/browse/"></a>
+                            </td>
+                            <td><a href="../design/lifecycle-task-resume.html"></a></td>
+                            <td><p>/*</p>
+<ul>
+<li>Licensed to the Apache Software Foundation (ASF) under one or more</li>
+<li>contributor license agreements. See the NOTICE file distributed with</li>
+<li>this work for additional information regarding copyright ownership.</li>
+<li>The ASF licenses this file to You under the Apache License, Version 2.0</li>
+<li>(the &ldquo;License&rdquo;); you may not use this file except in compliance with</li>
+<li>the License. You may obtain a copy of the License at</li>
+<li></li>
+<li>
+<pre><code> http://www.apache.org/licenses/LICENSE-2.0
+</code></pre>
+</li>
+<li></li>
+<li>Unless required by applicable law or agreed to in writing, software</li>
+<li>distributed under the License is distributed on an &ldquo;AS IS&rdquo; BASIS,</li>
+<li>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</li>
+<li>See the License for the specific language governing permissions and</li>
+<li>limitations under the License.
+*/</li>
+</ul>
+<h1 id="design-for-resumable-lifecycle-scanshdds-8342">Design for Resumable Lifecycle Scans(HDDS-8342)</h1>
+<h2 id="problem-statement">Problem Statement:</h2>
+<p>The <code>HDDS-8342</code> branch introduces the <code>KeyLifecycleService</code>, a background service running on the Ozone Manager (OM) Leader to enforce bucket lifecycle rules (expiration, moving to trash, and aborting incomplete multipart uploads).
+The entire bucket is scanned in a single <code>call()</code> execution. If the OM restarts, crashes, or a leader transfer occurs, the scan state is lost. The new leader must restart the scan from the beginning.
+For buckets with billions of keys, the scan may never complete if leader transfers happen periodically.</p></td>
+                            <td></td>
+                        </tr>
+                        
                         </tbody>
                     </table>
                 </main>

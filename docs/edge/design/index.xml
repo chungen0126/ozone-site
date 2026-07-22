@@ -6,7 +6,7 @@
     <description>Recent content in Designs on Ozone</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 21 Jul 2026 12:47:37 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 13:17:35 +0800</lastBuildDate>
     <atom:link href="/design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Multipart Upload GC Pressure Optimizations</title>
@@ -329,6 +329,13 @@
       <pubDate>Tue, 18 Sep 2018 00:00:00 +0000</pubDate>
       <guid>/design/omha.html</guid>
       <description>Support HA for Ozone Manager with the help of RATIS</description>
+    </item>
+    <item>
+      <title></title>
+      <link>/design/lifecycle-task-resume.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/design/lifecycle-task-resume.html</guid>
+      <description>&lt;p&gt;/*&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Licensed to the Apache Software Foundation (ASF) under one or more&lt;/li&gt;&#xA;&lt;li&gt;contributor license agreements. See the NOTICE file distributed with&lt;/li&gt;&#xA;&lt;li&gt;this work for additional information regarding copyright ownership.&lt;/li&gt;&#xA;&lt;li&gt;The ASF licenses this file to You under the Apache License, Version 2.0&lt;/li&gt;&#xA;&lt;li&gt;(the &amp;ldquo;License&amp;rdquo;); you may not use this file except in compliance with&lt;/li&gt;&#xA;&lt;li&gt;the License. You may obtain a copy of the License at&lt;/li&gt;&#xA;&lt;li&gt;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;pre&gt;&lt;code&gt; http://www.apache.org/licenses/LICENSE-2.0&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&lt;/li&gt;&#xA;&lt;li&gt;Unless required by applicable law or agreed to in writing, software&lt;/li&gt;&#xA;&lt;li&gt;distributed under the License is distributed on an &amp;ldquo;AS IS&amp;rdquo; BASIS,&lt;/li&gt;&#xA;&lt;li&gt;WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&lt;/li&gt;&#xA;&lt;li&gt;See the License for the specific language governing permissions and&lt;/li&gt;&#xA;&lt;li&gt;limitations under the License.&#xA;*/&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;design-for-resumable-lifecycle-scanshdds-8342&#34;&gt;Design for Resumable Lifecycle Scans(HDDS-8342)&lt;/h1&gt;&#xA;&lt;h2 id=&#34;problem-statement&#34;&gt;Problem Statement:&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;code&gt;HDDS-8342&lt;/code&gt; branch introduces the &lt;code&gt;KeyLifecycleService&lt;/code&gt;, a background service running on the Ozone Manager (OM) Leader to enforce bucket lifecycle rules (expiration, moving to trash, and aborting incomplete multipart uploads).&#xA;The entire bucket is scanned in a single &lt;code&gt;call()&lt;/code&gt; execution. If the OM restarts, crashes, or a leader transfer occurs, the scan state is lost. The new leader must restart the scan from the beginning.&#xA;For buckets with billions of keys, the scan may never complete if leader transfers happen periodically.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
