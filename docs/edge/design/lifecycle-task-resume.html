@@ -597,65 +597,32 @@ s=d.getElementsByTagName('script')[0];
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main-content">
             <div class="col-md-9">
-                <h1><a href="https://issues.apache.org/jira/browse/">[]</a>  () </h1>
-                <div><i>Authors: </i><div class="pull-right">0001-01-01</div></div>
+                <h1><a href="https://issues.apache.org/jira/browse/HDDS-15447">[HDDS-15447]</a> Resumable Lifecycle Scans (implemented) </h1>
+                <div><i>Authors: Sammi Chen</i><div class="pull-right">2026-07-13</div></div>
                 <p>&nbsp</p>
 
                 <div class="panel panel-success">
                     <div class="panel-heading">Summary</div>
                     <div class="panel-body">
-                        <p>/*</p>
-<ul>
-<li>Licensed to the Apache Software Foundation (ASF) under one or more</li>
-<li>contributor license agreements. See the NOTICE file distributed with</li>
-<li>this work for additional information regarding copyright ownership.</li>
-<li>The ASF licenses this file to You under the Apache License, Version 2.0</li>
-<li>(the &ldquo;License&rdquo;); you may not use this file except in compliance with</li>
-<li>the License. You may obtain a copy of the License at</li>
-<li></li>
-<li>
-<pre><code> http://www.apache.org/licenses/LICENSE-2.0
-</code></pre>
-</li>
-<li></li>
-<li>Unless required by applicable law or agreed to in writing, software</li>
-<li>distributed under the License is distributed on an &ldquo;AS IS&rdquo; BASIS,</li>
-<li>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</li>
-<li>See the License for the specific language governing permissions and</li>
-<li>limitations under the License.
-*/</li>
-</ul>
-<h1 id="design-for-resumable-lifecycle-scanshdds-8342">Design for Resumable Lifecycle Scans(HDDS-8342)</h1>
-<h2 id="problem-statement">Problem Statement:</h2>
-<p>The <code>HDDS-8342</code> branch introduces the <code>KeyLifecycleService</code>, a background service running on the Ozone Manager (OM) Leader to enforce bucket lifecycle rules (expiration, moving to trash, and aborting incomplete multipart uploads).
-The entire bucket is scanned in a single <code>call()</code> execution. If the OM restarts, crashes, or a leader transfer occurs, the scan state is lost. The new leader must restart the scan from the beginning.
-For buckets with billions of keys, the scan may never complete if leader transfers happen periodically.</p>
+                        Persist lifecycle scan pointers so OM leader failover can resume bucket scans
                     </div>
                 </div>
 
-              <p>/*</p>
-<ul>
-<li>Licensed to the Apache Software Foundation (ASF) under one or more</li>
-<li>contributor license agreements. See the NOTICE file distributed with</li>
-<li>this work for additional information regarding copyright ownership.</li>
-<li>The ASF licenses this file to You under the Apache License, Version 2.0</li>
-<li>(the &ldquo;License&rdquo;); you may not use this file except in compliance with</li>
-<li>the License. You may obtain a copy of the License at</li>
-<li></li>
-<li>
-<pre><code> http://www.apache.org/licenses/LICENSE-2.0
-</code></pre>
-</li>
-<li></li>
-<li>Unless required by applicable law or agreed to in writing, software</li>
-<li>distributed under the License is distributed on an &ldquo;AS IS&rdquo; BASIS,</li>
-<li>WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</li>
-<li>See the License for the specific language governing permissions and</li>
-<li>limitations under the License.
-*/</li>
-</ul>
-<h1 id="design-for-resumable-lifecycle-scanshdds-8342">Design for Resumable Lifecycle Scans(HDDS-8342)</h1>
-<h2 id="problem-statement">Problem Statement:</h2>
+              <!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+<h1 id="design-for-resumable-lifecycle-scanshdds-15447">Design for Resumable Lifecycle Scans(HDDS-15447)</h1>
+<h2 id="problem-statement">Problem Statement</h2>
 <p>The <code>HDDS-8342</code> branch introduces the <code>KeyLifecycleService</code>, a background service running on the Ozone Manager (OM) Leader to enforce bucket lifecycle rules (expiration, moving to trash, and aborting incomplete multipart uploads).
 The entire bucket is scanned in a single <code>call()</code> execution. If the OM restarts, crashes, or a leader transfer occurs, the scan state is lost. The new leader must restart the scan from the beginning.
 For buckets with billions of keys, the scan may never complete if leader transfers happen periodically.</p>
@@ -723,7 +690,7 @@ The <code>multipartInfoTable</code> iterator seeks to <code>lastScannedMpuKey</c
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: July 13, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/daef2f19c2946ad8e909323f5956b1884bba64fe">daef2f19c2</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 24, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/9d2d4adf55da1b94d5ac509b4292b3d1222a451d">9d2d4adf55</a>
     </span>
   </div>
 </footer>
