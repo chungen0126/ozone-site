@@ -238,6 +238,19 @@
                 href="/feature/prefixfso.html"
                 />
   </url><url>
+    <loc>/feature/short-circuit-read.html</loc>
+    <lastmod>2025-02-21T11:50:34+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/feature/short-circuit-read.html"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/feature/short-circuit-read.html"
+                />
+  </url><url>
     <loc>/feature/snapshot-configuration-properties.html</loc>
     <lastmod>2026-06-17T13:06:42-07:00</lastmod>
   </url><url>
@@ -730,7 +743,7 @@
                 />
   </url><url>
     <loc>/design/index.html</loc>
-    <lastmod>2026-07-24T14:16:22+08:00</lastmod>
+    <lastmod>2026-07-27T15:49:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -801,6 +814,9 @@
   </url><url>
     <loc>/design/tools.html</loc>
     <lastmod>2025-08-12T14:24:23-04:00</lastmod>
+  </url><url>
+    <loc>/design/short-circuit-read.html</loc>
+    <lastmod>2026-07-27T15:49:46+08:00</lastmod>
   </url><url>
     <loc>/design/overwrite-key-only-if-unchanged.html</loc>
     <lastmod>2024-04-29T10:37:20+01:00</lastmod>

@@ -50,6 +50,13 @@
       <description>Ozone 的纠删码机制</description>
     </item>
     <item>
+      <title>Datanode 本地短路读</title>
+      <link>/zh/feature/short-circuit-read.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/zh/feature/short-circuit-read.html</guid>
+      <description>Ozone Datanode 本地短路读功能介绍</description>
+    </item>
+    <item>
       <title>基于前缀的文件系统优化</title>
       <link>/zh/feature/prefixfso.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

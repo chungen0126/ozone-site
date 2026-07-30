@@ -6,7 +6,7 @@
     <description>Recent content in Designs on Ozone</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 24 Jul 2026 14:16:22 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2026 15:49:46 +0800</lastBuildDate>
     <atom:link href="/design/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Resumable Lifecycle Scans</title>
@@ -112,6 +112,13 @@
       <pubDate>Wed, 18 Dec 2024 00:00:00 +0000</pubDate>
       <guid>/design/tools.html</guid>
       <description>Proposal for an improved layout of Ozone tools CLI</description>
+    </item>
+    <item>
+      <title>Short Circuit Local Read in DN</title>
+      <link>/design/short-circuit-read.html</link>
+      <pubDate>Wed, 04 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>/design/short-circuit-read.html</guid>
+      <description>Support read data from local disk file directly when the client and data are co-located on the same server</description>
     </item>
     <item>
       <title>Overwriting an Ozone Key only if it has not changed.</title>

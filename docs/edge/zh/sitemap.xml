@@ -197,6 +197,19 @@
                 href="/zh/interface/o3fs.html"
                 />
   </url><url>
+    <loc>/zh/feature/short-circuit-read.html</loc>
+    <lastmod>2025-02-21T11:50:34+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/feature/short-circuit-read.html"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="/zh/feature/short-circuit-read.html"
+                />
+  </url><url>
     <loc>/zh/feature/prefixfso.html</loc>
     <lastmod>2023-01-26T08:55:43-08:00</lastmod>
     <xhtml:link

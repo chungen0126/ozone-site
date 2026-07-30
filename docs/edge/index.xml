@@ -148,6 +148,13 @@
       <description>Supports atomic rename and delete operation.</description>
     </item>
     <item>
+      <title>Short Circuit Local Read in Datanode</title>
+      <link>/feature/short-circuit-read.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/feature/short-circuit-read.html</guid>
+      <description>Introduction to Ozone Datanode Short Circuit Local Read Feature</description>
+    </item>
+    <item>
       <title>Snapshot Configuration Properties</title>
       <link>/feature/snapshot-configuration-properties.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -643,6 +650,13 @@
       <pubDate>Wed, 18 Dec 2024 00:00:00 +0000</pubDate>
       <guid>/design/tools.html</guid>
       <description>Proposal for an improved layout of Ozone tools CLI</description>
+    </item>
+    <item>
+      <title>Short Circuit Local Read in DN</title>
+      <link>/design/short-circuit-read.html</link>
+      <pubDate>Wed, 04 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>/design/short-circuit-read.html</guid>
+      <description>Support read data from local disk file directly when the client and data are co-located on the same server</description>
     </item>
     <item>
       <title>Overwriting an Ozone Key only if it has not changed.</title>
