@@ -909,7 +909,12 @@ s=d.getElementsByTagName('script')[0];
       <tr>
           <td><code>hdds.datanode.replication.streams.limit</code></td>
           <td><code>10</code></td>
-          <td>Maximum replication streams per datanode</td>
+          <td>Base size of the global replication handler executor and inbound replication server executor</td>
+      </tr>
+      <tr>
+          <td><code>hdds.datanode.replication.per.volume.streams.limit</code></td>
+          <td><code>2</code></td>
+          <td>Maximum push replication streams per data volume when per-volume replication thread pools are enabled (separate from streams.limit)</td>
       </tr>
   </tbody>
 </table>
@@ -1007,7 +1012,7 @@ s=d.getElementsByTagName('script')[0];
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: February 28, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/1edbb6d1c1fbcb2ee6d086e21db5c4363e690d29">1edbb6d1c1</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 31, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/0c4c66e9f4b4b7bf84d6135235b2d0ae0d74dd92">0c4c66e9f4</a>
     </span>
   </div>
 </footer>

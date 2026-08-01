@@ -714,9 +714,17 @@ s=d.getElementsByTagName('script')[0];
 <li>
 <p><strong><code>hdds.datanode.replication.streams.limit</code></strong></p>
 <ul>
-<li><strong>Purpose</strong>: Sets the base number of threads for the replication thread pool on a DataNode.</li>
+<li><strong>Purpose</strong>: Sets the base size of both the global replication handler executor and the inbound replication server executor.</li>
 <li><strong>Default</strong>: <code>10</code>.</li>
-<li><strong>Details</strong>: For decommissioning nodes, this limit is also scaled by <code>hdds.datanode.replication.outofservice.limit.factor</code>.</li>
+<li><strong>Details</strong>: On decommissioning nodes, the global executor is scaled by <code>hdds.datanode.replication.outofservice.limit.factor</code>. Per-volume pools replace normal source-side push scheduling, but target-side inbound push requests remain limited by the inbound replication server executor configured by this property.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>hdds.datanode.replication.per.volume.streams.limit</code></strong></p>
+<ul>
+<li><strong>Purpose</strong>: When <code>hdds.datanode.replication.per.volume.enabled</code> is true, sets the base number of push replication handler threads <strong>per data volume</strong>.</li>
+<li><strong>Default</strong>: <code>2</code> (reconfigurable at runtime).</li>
+<li><strong>Details</strong>: Each volume has its own pool; total push capacity on the node scales with the number of volumes. On decommissioning or maintenance nodes, each per-volume pool is scaled by <code>hdds.datanode.replication.outofservice.limit.factor</code>, same as the global pool. Push replication is typically disk-bound, so one or two concurrent transfers per volume is often enough to keep a disk busy while isolating slow volumes.</li>
 </ul>
 </li>
 </ul>
@@ -788,7 +796,7 @@ other OMs.</li>
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: November 11, 2025 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/6d0288bea7f339effb0d9f790e0c35e4efc8d449">6d0288bea7</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: July 31, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/0c4c66e9f4b4b7bf84d6135235b2d0ae0d74dd92">0c4c66e9f4</a>
     </span>
   </div>
 </footer>
