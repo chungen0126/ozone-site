@@ -684,6 +684,7 @@ s=d.getElementsByTagName('script')[0];
 <p>Verify data across replicas. There are multiple checks available, which can be selected using the command line options:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Usage: ozone debug replicas verify <span style="color:#f92672">[</span>-hV<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--all-results<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--verbose<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>                                   <span style="color:#f92672">[</span>--container-cache-size<span style="color:#f92672">=</span>&lt;containerCacheSize&gt;<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>                                   <span style="color:#f92672">[</span>--refresh-from-scm<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>                                    <span style="color:#f92672">[</span>-id<span style="color:#f92672">=</span>&lt;scmServiceId&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--scm<span style="color:#f92672">=</span>&lt;scm&gt;<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>                                   <span style="color:#f92672">([</span>--checksums<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--block-existence<span style="color:#f92672">]</span>
 </span></span><span style="display:flex;"><span>                                   <span style="color:#f92672">[</span>--container-state<span style="color:#f92672">])</span> &lt;uri&gt;
@@ -722,6 +723,11 @@ s=d.getElementsByTagName('script')[0];
 </span></span><span style="display:flex;"><span>      --container-state   Check the container and replica states. Containers in
 </span></span><span style="display:flex;"><span>                            <span style="color:#f92672">[</span>DELETING, DELETED<span style="color:#f92672">]</span> states, or it<span style="color:#960050;background-color:#1e0010">&#39;</span>s replicas in
 </span></span><span style="display:flex;"><span>                            <span style="color:#f92672">[</span>DELETED, UNHEALTHY, INVALID<span style="color:#f92672">]</span> states fail the check.
+</span></span><span style="display:flex;"><span>      --refresh-from-scm
+</span></span><span style="display:flex;"><span>                          Force OM to refresh container locations from SCM
+</span></span><span style="display:flex;"><span>                            before returning key info. This can slow down
+</span></span><span style="display:flex;"><span>                            verification but may avoid stale location results
+</span></span><span style="display:flex;"><span>                            from OM cache.
 </span></span><span style="display:flex;"><span>  -h, --help              Show this help message and exit.
 </span></span><span style="display:flex;"><span>      -id, --service-id<span style="color:#f92672">=</span>&lt;scmServiceId&gt;
 </span></span><span style="display:flex;"><span>                          ServiceId of SCM HA Cluster
@@ -748,7 +754,7 @@ s=d.getElementsByTagName('script')[0];
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: August 12, 2025 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/a59b573fdf30f6ae3e061f84b607d28d3a9c3601">a59b573fdf</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: August 18, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/2c02f432d3078ef6da65176aed031f7269d89f5c">2c02f432d3</a>
     </span>
   </div>
 </footer>
