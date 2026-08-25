@@ -719,7 +719,10 @@ s=d.getElementsByTagName('script')[0];
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin containerbalancer status
 </span></span></code></pre></div><p>To get a more detailed status, including the history of iterations:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin containerbalancer status -v --history
-</span></span></code></pre></div><h3 id="stop">Stop</h3>
+</span></span></code></pre></div><p>With <code>-v</code>/<code>--verbose</code>, when failures occur, a <strong>Failed container moves</strong> section lists each failure reason
+(e.g. <code>REPLICATION_FAIL_TIME_OUT</code>, <code>ITERATION_MOVE_TIMEOUT</code>, <code>PRE_MOVE_CONTAINER_NOT_FOUND</code> and more)
+with the total count and a per-datanode breakdown of which source and target nodes were involved.</p>
+<h3 id="stop">Stop</h3>
 <p>To stop the Container Balancer:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin containerbalancer stop
 </span></span></code></pre></div><h2 id="configuration">Configuration</h2>
@@ -824,7 +827,7 @@ s=d.getElementsByTagName('script')[0];
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: June 24, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/8e60597eacc4fe328b8ae0b25e21bd00f834c0ef">8e60597eac</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: August 25, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/e6dfa38dbdf0657a6a0d1ef701fa53c366275dce">e6dfa38dbd</a>
     </span>
   </div>
 </footer>
