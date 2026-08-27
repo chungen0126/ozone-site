@@ -695,12 +695,13 @@ s=d.getElementsByTagName('script')[0];
 </span></span><span style="display:flex;"><span>ozone admin scm transfer -id &lt;SCM_SERVICE_ID&gt; -r
 </span></span></code></pre></div><ul>
 <li><code>-id, --service-id</code>: Specifies the SCM Service ID.</li>
-<li><code>-n, --new-leader-id</code>: The SCM UUID (Raft peer ID) of the SCM to which leadership will be transferred (e.g., <code>e6877ce5-56cd-4f0b-ad60-4c8ef9000882</code>).</li>
+<li><code>-n, --new-leader-id</code>: The SCM to which leadership will be transferred, given either as the SCM UUID (Raft peer ID, e.g. <code>e6877ce5-56cd-4f0b-ad60-4c8ef9000882</code>) or as the configured node id (e.g. <code>scm1</code>).</li>
 <li><code>-r, --random</code>: Randomly chooses a follower to transfer leadership to.</li>
 </ul>
 <h3 id="example">Example</h3>
 <p>To transfer leadership to a specific SCM in a cluster with service ID <code>cluster1</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin scm transfer -id cluster1 -n e6877ce5-56cd-4f0b-ad60-4c8ef9000882
+</span></span><span style="display:flex;"><span>ozone admin scm transfer -id cluster1 -n scm1
 </span></span></code></pre></div><p>To transfer leadership to a random follower:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ozone admin scm transfer -id cluster1 -r
 </span></span></code></pre></div><h2 id="scm-service-roles-listing">SCM Service Roles Listing</h2>
@@ -833,7 +834,7 @@ Note: Make sure that the <code>ozone.scm.primordial.node.id</code> property is p
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: June 24, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/8e60597eacc4fe328b8ae0b25e21bd00f834c0ef">8e60597eac</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: August 27, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/521e046314bc3bef2e66c5c58e0f3d9a8c604fe8">521e046314</a>
     </span>
   </div>
 </footer>
