@@ -811,25 +811,24 @@ If deletes are replayed first, <code>A/B</code> is removed before the rename and
 <p><strong>1. <code>toSnapshot</code> Directory Scan (FSO only):</strong></p>
 <ul>
 <li>Iterates sequentially through the <code>toSnapshot</code>&rsquo;s <code>directoryTable</code>.</li>
-<li>Extracts <code>updateID</code> using the lightweight parser. If <code>updateID &lt;= fromSnapshot.lastTransactionInfo.txIndex</code>, the entry is unchanged (not created/renamed/modified) and is skipped. Otherwise, its compare signature is built and it is added to the <code>newList</code> and recorded in the <code>DiffCandidateSet</code>.</li>
+<li>Extracts <code>updateID</code> using the lightweight parser. For <strong>every</strong> directory entry, writes <strong>one</strong> <code>newList</code> value per <code>objectId</code>: if the update-id gate passes (or is disabled), builds the compare signature, adds the entry to <code>newList</code>, and records it in the <code>DiffCandidateSet</code>; otherwise writes a present-marker to <code>newList</code> (membership only, no signature).</li>
 <li><strong>Graph Construction:</strong> Regardless of whether the entry is a candidate, the <code>parentID</code> and <code>name</code> are extracted to build the foundational edges of the <code>toSnapshot</code> directory structure graph. This is done by writing <code>(parentID, objectID) -&gt; name</code> entries into a temporary RocksDB Column Family (<code>jobId-to-edges</code>).</li>
 </ul>
 <p><strong>2. <code>fromSnapshot</code> Directory Scan (FSO only):</strong></p>
 <ul>
 <li>Iterates sequentially through the <code>fromSnapshot</code>&rsquo;s <code>directoryTable</code>.</li>
-<li>Only processes entries whose <code>objectID</code> is in <code>DiffCandidateSet</code> during the <code>toSnapshot</code> scan. Adds these to the <code>oldList</code>.</li>
+<li>For <strong>every</strong> directory entry, writes <strong>one</strong> <code>oldList</code> value per <code>objectId</code> with full compare signature when <code>objectID</code> is in <code>DiffCandidateSet</code>, otherwise metadata-only (<code>parentId</code>, <code>name</code>, <code>isDir</code>) with an empty signature.</li>
 <li><strong>Graph Construction:</strong> Extracts <code>parentID</code> and <code>name</code> for all entries to build the <code>fromSnapshot</code> directory structure graph by writing to another temporary Column Family (<code>jobId-from-edges</code>).</li>
 </ul>
 <p><strong>3. <code>toSnapshot</code> Key Scan:</strong></p>
 <ul>
 <li>Iterates sequentially through the <code>toSnapshot</code>&rsquo;s <code>key/fileTable</code>.</li>
-<li>Applies the same <code>updateID</code> gating logic: skips if <code>updateID &lt;= fromSnapshot.lastTransactionInfo.txIndex</code>.</li>
-<li>Builds the compare signature and adds to <code>newList</code>, recording these entries in the <code>DiffCandidateSet</code>. No parentID/path checks are performed at this stage.</li>
+<li>For <strong>every</strong> key entry, writes <strong>one</strong> <code>newList</code> value per <code>objectId</code>: if the update-id gate passes (or is disabled), builds the compare signature, adds to <code>newList</code>, and records the entry in the <code>DiffCandidateSet</code>; otherwise writes a present-marker to <code>newList</code> only. No parentID/path checks are performed at this stage.</li>
 </ul>
 <p><strong>4. <code>fromSnapshot</code> Key Scan:</strong></p>
 <ul>
 <li>Iterates sequentially through the <code>fromSnapshot</code>&rsquo;s <code>key/fileTable</code>.</li>
-<li>Only builds compare signature for entries whose <code>objectID</code> was marked in <code>DiffCandidateSet</code> during the <code>toSnapshot</code> file scan. Adds these to the <code>oldList</code>.</li>
+<li>For <strong>every</strong> key entry, writes <strong>one</strong> <code>oldList</code> value per <code>objectId</code> with full compare signature when <code>objectID</code> was marked in <code>DiffCandidateSet</code> during the <code>toSnapshot</code> file scan, otherwise metadata-only with an empty signature.</li>
 </ul>
 <h3 id="stage-2-merge-join--classification-1">Stage 2: Merge Join &amp; Classification</h3>
 <p>Same as Stage 2 of DAG based diff implementation.</p>
@@ -911,7 +910,7 @@ If deletes are replayed first, <code>A/B</code> is removed before the rename and
 <footer class="footer">
   <div class="container">
     <span class="small text-muted">
-      Version: 2.3.0-SNAPSHOT, Last Modified: July 13, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/2c48d33f0c8263b25e51ccbdd84fe6add953fb3e">2c48d33f0c</a>
+      Version: 2.3.0-SNAPSHOT, Last Modified: August 31, 2026 <a class="hide-child link primary-color" href="https://github.com/apache/ozone/commit/57072651c6a19e3f2bcc09c4d09a7ea4e6faa17b">57072651c6</a>
     </span>
   </div>
 </footer>
